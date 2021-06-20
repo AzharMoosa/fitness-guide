@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Fitness App</string>
+    <string name="dumbbell_icon">Dumbbell Icon</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nunc_gravida_lobortis_nisl_ac_pellentesque">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida lobortis nisl, ac pellentesque.</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_in">Sign In</string>
+</resources>
