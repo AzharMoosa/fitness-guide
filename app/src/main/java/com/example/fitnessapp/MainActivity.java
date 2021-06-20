@@ -18,4 +18,8 @@ public class MainActivity extends AppCompatActivity {
     public void loginScreen(View v){
         startActivity(new Intent(MainActivity.this, Login.class));
     }
+
+    public void signUpScreen(View v){
+        startActivity(new Intent(MainActivity.this, SignUp.class));
+    }
 }
