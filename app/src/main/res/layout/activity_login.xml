@@ -13,6 +13,7 @@
         android:layout_height="55dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/montserrat_bold"
+        android:onClick="loginUser"
         android:text="@string/log_in"
         android:textColor="@color/primary_text"
         app:cornerRadius="11dp"

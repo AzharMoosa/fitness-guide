@@ -13,6 +13,7 @@
         android:layout_height="55dp"
         android:backgroundTint="@color/blue"
         android:fontFamily="@font/montserrat_bold"
+        android:onClick="registerUser"
         android:text="@string/sign_up"
         android:textColor="@color/primary_text"
         app:cornerRadius="11dp"
@@ -72,7 +73,7 @@
         app:layout_constraintVertical_bias="0.092" />
 
     <EditText
-        android:id="@+id/email2"
+        android:id="@+id/email_signup"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:autofillHints=""
@@ -93,7 +94,7 @@
         app:layout_constraintVertical_bias="0.425" />
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/password_signup"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:autofillHints=""
@@ -113,7 +114,7 @@
         app:layout_constraintVertical_bias="0.571" />
 
     <EditText
-        android:id="@+id/password3"
+        android:id="@+id/confirm_password"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:autofillHints=""
@@ -133,7 +134,7 @@
         app:layout_constraintVertical_bias="0.714" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/name_signup"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:backgroundTint="@color/primary_text"
