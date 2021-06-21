@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.092" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/email_login"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:autofillHints=""
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/password_login"
         android:layout_width="366dp"
         android:layout_height="70dp"
         android:backgroundTint="@color/primary_text"
