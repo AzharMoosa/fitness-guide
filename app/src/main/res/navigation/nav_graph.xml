@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/nav_graph"
+  app:startDestination="@id/navigation_home">
+
+  <fragment
+    android:id="@+id/navigation_home"
+    android:name="com.example.fitnessapp.Home"
+    android:label="fragment_home"
+    tools:layout="@layout/fragment_home" />
+  <fragment
+    android:id="@+id/navigation_nutrition"
+    android:name="com.example.fitnessapp.Nutrition"
+    android:label="fragment_nutrition"
+    tools:layout="@layout/fragment_nutrition" />
+  <fragment
+    android:id="@+id/navigation_body"
+    android:name="com.example.fitnessapp.Body"
+    android:label="fragment_body"
+    tools:layout="@layout/fragment_body" />
+  <fragment
+    android:id="@+id/navigation_chat"
+    android:name="com.example.fitnessapp.Chat"
+    android:label="fragment_chat"
+    tools:layout="@layout/fragment_chat" />
+  <fragment
+    android:id="@+id/navigation_settings"
+    android:name="com.example.fitnessapp.Settings"
+    android:label="fragment_settings"
+    tools:layout="@layout/fragment_settings" />
+</navigation>
