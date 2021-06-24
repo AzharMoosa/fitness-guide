@@ -1,5 +1,6 @@
 package com.example.fitnessapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
@@ -22,8 +23,9 @@ public class Dashboard extends AppCompatActivity {
     navigationView.setOnNavigationItemSelectedListener(navListener);
   }
 
-  private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+  private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
       new OnNavigationItemSelectedListener() {
+        @SuppressLint("NonConstantResourceId")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
           Fragment selectedFragment = null;

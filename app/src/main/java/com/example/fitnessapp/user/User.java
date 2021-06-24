@@ -4,13 +4,11 @@ public class User implements UserInterface {
 
     private String name;
     private String email;
-    private String password;
     private String token;
 
-    public User(String name, String email, String password) {
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
-        this.password = password;
     }
 
     @Override
@@ -21,11 +19,6 @@ public class User implements UserInterface {
     @Override
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override

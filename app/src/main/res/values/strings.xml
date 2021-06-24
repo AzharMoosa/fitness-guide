@@ -16,4 +16,10 @@
   <string name="login_back">Login</string>
   <!-- TODO: Remove or change this placeholder text -->
   <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="welcome_text">Welcome Back</string>
+  <string name="workout_log">Workout Log</string>
+  <string name="nutrition_track">Nutrition Track</string>
+  <string name="workout_schedule">Workout Schedule</string>
+  <string name="health">Health</string>
+  <string name="user_info">User Info</string>
 </resources>

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.fitnessapp.user.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,11 +46,10 @@ public class SignUp extends AppCompatActivity {
         String userPassword = password.getText().toString();
         String userConfirmPassword = confirmPassword.getText().toString();
 
-        // Create User
-        User user = new User(userName, userEmail, userPassword);
+        // Sign Up
         JSONObject data = new JSONObject();
-        data.put(NAME, user.getName());
-        data.put(EMAIL, user.getEmail());
+        data.put(NAME, userName);
+        data.put(EMAIL, userEmail);
         data.put(PASSWORD, userPassword);
         register(USERS, data, this);
     }

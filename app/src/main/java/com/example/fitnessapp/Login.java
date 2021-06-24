@@ -39,7 +39,7 @@ public class Login extends AppCompatActivity {
     String userEmail = email.getText().toString();
     String userPassword = password.getText().toString();
 
-    // Create User
+    // Login User
     JSONObject data = new JSONObject();
     data.put(EMAIL, userEmail);
     data.put(PASSWORD, userPassword);

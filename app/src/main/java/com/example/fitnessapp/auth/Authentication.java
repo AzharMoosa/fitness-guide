@@ -1,7 +1,9 @@
 package com.example.fitnessapp.auth;
 
 import static com.example.fitnessapp.constants.Constants.API_URL;
+import static com.example.fitnessapp.constants.Constants.AUTH;
 import static com.example.fitnessapp.constants.Constants.TOKEN;
+import static com.example.fitnessapp.constants.Constants.user;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fitnessapp.Dashboard;
+import com.example.fitnessapp.user.User;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONException;
@@ -89,6 +92,35 @@ public class Authentication {
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString(TOKEN, token);
     editor.apply();
+  }
+
+  public static void createUser(Context context) {
+    String token = getToken(context);
+    if (!token.equalsIgnoreCase("")) {
+      RequestQueue requestQueue = Volley.newRequestQueue(context);
+      JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, API_URL + AUTH,
+          null, response -> {
+        try {
+          user = new User(response.getString("name"), response.getString("email"));
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
+      },  error -> Toast
+          .makeText(context.getApplicationContext(), "Error: " + error.toString(),
+              Toast.LENGTH_SHORT).show()) {
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+          Map<String, String> headers = new HashMap<>();
+          headers.put("x-auth-token", token);
+          return headers;
+        }
+      };
+      int socketTimeout = 10000;
+      RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+          DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+      objectRequest.setRetryPolicy(policy);
+      requestQueue.add(objectRequest);
+    }
   }
 
   public static void clearToken(Context context) {
