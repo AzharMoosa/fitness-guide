@@ -1,7 +1,5 @@
 package com.example.fitnessapp.constants;
 
-import com.example.fitnessapp.user.User;
-
 public class Constants {
 
     // API URL
@@ -14,6 +12,4 @@ public class Constants {
     // Routes
     public static final String AUTH = "auth";
     public static final String USERS = "users";
-    // User
-    public static User user = new User("John Doe", "jdoe@gmail.com");
 }

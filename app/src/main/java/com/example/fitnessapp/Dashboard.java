@@ -6,6 +6,11 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import com.example.fitnessapp.menu.Body;
+import com.example.fitnessapp.menu.Chat;
+import com.example.fitnessapp.menu.Home;
+import com.example.fitnessapp.menu.Nutrition;
+import com.example.fitnessapp.menu.Settings;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 

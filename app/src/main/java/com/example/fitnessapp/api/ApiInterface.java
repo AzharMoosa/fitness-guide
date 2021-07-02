@@ -1,5 +1,6 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.api;
 
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -10,4 +11,7 @@ public interface ApiInterface {
   @GET("auth")
   Call<UserData> getUserData(@Header("x-auth-token") String auth);
 
+
+  @GET("routines")
+  Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
 }

@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

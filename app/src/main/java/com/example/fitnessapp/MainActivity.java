@@ -16,6 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fitnessapp.auth.Login;
+import com.example.fitnessapp.auth.SignUp;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONException;

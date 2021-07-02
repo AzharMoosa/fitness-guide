@@ -1,14 +1,20 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.menu;
 
 import static com.example.fitnessapp.auth.Authentication.getToken;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import com.example.fitnessapp.api.ApiUtilities;
+import com.example.fitnessapp.R;
+import com.example.fitnessapp.api.UserData;
+import com.example.fitnessapp.routines.Routines;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,6 +54,10 @@ public class Home extends Fragment {
     return fragment;
   }
 
+  public void routineView(View v) {
+    startActivity(new Intent(this.getContext(), Routines.class));
+  }
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -65,7 +75,9 @@ public class Home extends Fragment {
     nameLabel = view.findViewById(R.id.user_text);
     homeUI = view.findViewById(R.id.home_ui);
     homeUI.setVisibility(View.INVISIBLE);
-    spinner = view.findViewById(R.id.spinner_home);
+    spinner = view.findViewById(R.id.spinner_routines);
+    ImageButton button = view.findViewById(R.id.routines_btn);
+    button.setOnClickListener(v -> startActivity(new Intent(v.getContext(), Routines.class)));
     ApiUtilities.getApiInterface()
         .getUserData(getToken(getContext()))
         .enqueue(

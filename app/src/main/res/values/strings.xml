@@ -22,4 +22,6 @@
   <string name="workout_schedule">Workout Schedule</string>
   <string name="health">Health</string>
   <string name="user_info">User Info</string>
+  <string name="routines">Routines</string>
+  <string name="back_button">Back Button</string>
 </resources>

@@ -1,10 +1,11 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.menu;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.example.fitnessapp.R;
 
 /**
  * A simple {@link Fragment} subclass. Use the {@link Body#newInstance} factory method to create an

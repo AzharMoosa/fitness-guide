@@ -1,4 +1,4 @@
-package com.example.fitnessapp;
+package com.example.fitnessapp.auth;
 
 import static com.example.fitnessapp.auth.Authentication.register;
 import static com.example.fitnessapp.constants.Constants.EMAIL;
@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.fitnessapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 

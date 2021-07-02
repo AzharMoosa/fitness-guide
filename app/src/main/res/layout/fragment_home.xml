@@ -5,9 +5,9 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/primary_bg"
-  tools:context=".Home" >
+  tools:context=".menu.Home" >
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/spinner_home"
+    android:id="@+id/spinner_routines"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ProgressBar
@@ -28,7 +28,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
-      android:id="@+id/imageButton"
+      android:id="@+id/routines_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
