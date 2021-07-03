@@ -26,4 +26,6 @@
   <string name="back_button">Back Button</string>
   <string name="create_routine">Create Routine</string>
   <string name="create_routine_btn">Create Routine Btn</string>
+  <string name="set_as_current_routine">Set As Current Routine</string>
+  <string name="monday">Monday</string>
 </resources>

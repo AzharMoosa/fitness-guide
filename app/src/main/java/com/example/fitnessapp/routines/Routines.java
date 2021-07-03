@@ -3,8 +3,10 @@ package com.example.fitnessapp.routines;
 import static com.example.fitnessapp.auth.Authentication.getToken;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -45,7 +47,7 @@ public class Routines extends AppCompatActivity {
                 if (response.body() != null) {
                   List<RoutinesData> routines = response.body();
                   for (RoutinesData routine : routines) {
-                    routinesList.addView(createRow(routine.getName()));
+                    routinesList.addView(createRow(routine));
                   }
                   spinner.setVisibility(View.INVISIBLE);
                   routineUI.setVisibility(View.VISIBLE);
@@ -67,15 +69,24 @@ public class Routines extends AppCompatActivity {
     startActivity(new Intent(this, CreateRoutine.class));
   }
 
-  private TableRow createRow(String routine) {
+  private TableRow createRow(RoutinesData routine) {
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(0, 0, 0, 100);
     row.setLayoutParams(params);
     TextView routineName = new TextView(getApplicationContext());
-    routineName.setText(routine);
+    routineName.setText(routine.getName());
     routineName.setTextSize(25);
     routineName.setTextColor(Color.WHITE);
+    routineName.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Routines.this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("current_routine", routine.getId());
+        editor.apply();
+        startActivity(new Intent(Routines.this,ViewRoutine.class));
+      }
+    });
     row.addView(routineName);
     return row;
   }

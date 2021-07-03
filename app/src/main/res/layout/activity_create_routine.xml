@@ -4,6 +4,114 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:background="@color/primary_bg"
   tools:context=".routines.CreateRoutine">
 
+  <CheckBox
+    android:id="@+id/checkBox"
+    android:layout_width="43dp"
+    android:layout_height="28dp"
+    android:buttonTint="@color/primary_text"
+    android:checked="false"
+    android:duplicateParentState="false"
+    android:fontFamily="@font/montserrat"
+    android:textColor="@color/primary_text"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.817"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.873" />
+  <ImageButton
+    android:id="@+id/back_btn2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10sp"
+    android:background="@null"
+    android:contentDescription="@string/back_button"
+    android:onClick="backBtn"
+    android:src="@drawable/back_btn"
+    android:translationY="12sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.895"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023" />
+  <ScrollView
+    android:id="@+id/scrollView3"
+    android:layout_width="423dp"
+    android:layout_height="483dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.411">
+    <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="30sp"
+      android:layout_marginRight="30sp"
+      android:fillViewport="true">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+          android:id="@+id/textView13"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:paddingTop="2sp"
+          android:paddingBottom="2sp"
+          android:background="@drawable/textlines"
+          android:fontFamily="@font/montserrat"
+          android:text="@string/monday"
+          android:textColor="@color/primary_text"
+          android:textSize="27sp" />
+      </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+  </ScrollView>
+  <TextView
+    android:id="@+id/textView11"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat"
+    android:text="@string/create_routine"
+    android:textColor="@color/primary_text"
+    android:textSize="30sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.169"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.048" />
+  <ImageButton
+    android:id="@+id/imageButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:contentDescription="@string/create_routine_btn"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.497"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.963"
+    app:srcCompat="@drawable/create_routine_btn_large" />
+  <TextView
+    android:id="@+id/textView12"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat"
+    android:text="@string/set_as_current_routine"
+    android:textColor="@color/primary_text"
+    android:textSize="20sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.356"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.872" />
 </androidx.constraintlayout.widget.ConstraintLayout>
