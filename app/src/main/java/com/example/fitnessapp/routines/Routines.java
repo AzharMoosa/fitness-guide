@@ -2,6 +2,7 @@ package com.example.fitnessapp.routines;
 
 import static com.example.fitnessapp.auth.Authentication.getToken;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,14 @@ public class Routines extends AppCompatActivity {
                 Log.e("Error", t.getMessage());
               }
             });
+  }
+
+  public void backBtn(View v) {
+    this.finish();
+  }
+
+  public void createRoutine(View v) {
+    startActivity(new Intent(this, CreateRoutine.class));
   }
 
   private TableRow createRow(String routine) {

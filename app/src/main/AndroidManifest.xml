@@ -10,7 +10,10 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".routines.Routines"></activity>
+    <activity android:name=".routines.EditRoutine"></activity>
+    <activity android:name=".routines.CreateRoutine" />
+    <activity android:name=".routines.ViewRoutine" />
+    <activity android:name=".routines.Routines" />
     <activity android:name=".Dashboard" />
     <activity android:name=".auth.SignUp" />
     <activity android:name=".auth.Login" />
@@ -26,8 +29,8 @@
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
   </application>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
   <uses-permission android:name="android.permission.INTERNET" />
+
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

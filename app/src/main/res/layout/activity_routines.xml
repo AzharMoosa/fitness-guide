@@ -10,7 +10,8 @@
   <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/spinner_routines"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="visible">
     <ProgressBar
       android:id="@+id/progressBar"
       style="?android:attr/progressBarStyle"
@@ -29,12 +30,28 @@
     android:layout_height="match_parent"
     android:visibility="visible">
 
+    <ScrollView
+      android:id="@+id/scrollView2"
+      android:layout_width="337dp"
+      android:layout_height="487dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.559">
+      <LinearLayout
+        android:id="@+id/routines_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
+    </ScrollView>
     <ImageButton
       android:id="@+id/back_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
       android:contentDescription="@string/back_button"
+      android:onClick="backBtn"
       android:src="@drawable/back_btn"
       android:translationY="12sp"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -43,29 +60,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.038" />
-    <ScrollView
-      android:layout_width="339dp"
-      android:layout_height="592dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.611"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="1.0">
-      <LinearLayout
-        android:id="@+id/routines_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TableRow
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginBottom="30sp"/>
-        <TableRow
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"></TableRow>
-      </LinearLayout>
-    </ScrollView>
     <TextView
       android:id="@+id/textView8"
       android:layout_width="wrap_content"
@@ -76,9 +70,36 @@
       android:textSize="38sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.179"
+      app:layout_constraintHorizontal_bias="0.151"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.04" />
+    <ImageButton
+      android:id="@+id/create_routine_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@null"
+      android:contentDescription="@string/create_routine_btn"
+      android:onClick="createRoutine"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.099"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.929"
+      app:srcCompat="@drawable/add_blue_btn" />
+    <TextView
+      android:id="@+id/textView9"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/create_routine"
+      android:textColor="@color/primary_text"
+      android:textSize="25sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.353"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.923" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

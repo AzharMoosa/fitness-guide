@@ -47,6 +47,8 @@ public class SignUp extends AppCompatActivity {
         String userPassword = password.getText().toString();
         String userConfirmPassword = confirmPassword.getText().toString();
 
+        // TODO: Check User Password
+
         // Sign Up
         JSONObject data = new JSONObject();
         data.put(NAME, userName);
@@ -54,22 +56,5 @@ public class SignUp extends AppCompatActivity {
         data.put(PASSWORD, userPassword);
         register(USERS, data, this);
     }
-
-//    private void register(String URL, JSONObject data) {
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, API_URL + URL,
-//                data, response -> Toast.makeText(getApplicationContext(), "Response:  " + response.toString(), Toast.LENGTH_SHORT).show(), error -> Toast.makeText(getApplicationContext(), "Error:  " + error.toString(), Toast.LENGTH_SHORT).show()) {
-//            public Map<String, String> getParams() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<>();
-//                params.put("Content-Type", "application/json");
-//                return params;
-//            }
-//        };
-//
-//        int socketTimeout = 10000;
-//        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-//        objectRequest.setRetryPolicy(policy);
-//        requestQueue.add(objectRequest);
-//    }
 
 }

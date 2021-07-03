@@ -24,4 +24,6 @@
   <string name="user_info">User Info</string>
   <string name="routines">Routines</string>
   <string name="back_button">Back Button</string>
+  <string name="create_routine">Create Routine</string>
+  <string name="create_routine_btn">Create Routine Btn</string>
 </resources>
