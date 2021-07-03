@@ -4,7 +4,6 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -15,6 +14,7 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.RoutinesData;
@@ -77,7 +77,11 @@ public class Routines extends AppCompatActivity {
     TextView routineName = new TextView(getApplicationContext());
     routineName.setText(routine.getName());
     routineName.setTextSize(25);
-    routineName.setTextColor(Color.WHITE);
+    if (routine.getIsActive()) {
+      routineName.setTextColor(ContextCompat.getColor(this, R.color.blue));
+    } else {
+      routineName.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+    }
     routineName.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Routines.this);
