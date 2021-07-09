@@ -8,7 +8,7 @@
   tools:context=".routines.CreateRoutine">
 
   <CheckBox
-    android:id="@+id/checkBox"
+    android:id="@+id/current_active"
     android:layout_width="43dp"
     android:layout_height="28dp"
     android:buttonTint="@color/primary_text"
@@ -75,6 +75,7 @@
     android:layout_height="wrap_content"
     android:background="@null"
     android:contentDescription="@string/create_routine_btn"
+    android:onClick="createRoutine"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.497"

@@ -12,7 +12,7 @@ public class RoutinesData {
 
   @SerializedName("routines")
   @Expose
-  private List<Object> routines = null;
+  private List<String> routines = null;
 
   @SerializedName("_id")
   @Expose
@@ -34,6 +34,12 @@ public class RoutinesData {
   @Expose
   private Integer v;
 
+  public RoutinesData(String name, Boolean isActive, List<String> routines) {
+    this.name = name;
+    this.isActive = isActive;
+    this.routines = routines;
+  }
+
   public Boolean getIsActive() {
     return isActive;
   }
@@ -42,11 +48,11 @@ public class RoutinesData {
     this.isActive = isActive;
   }
 
-  public List<Object> getRoutines() {
+  public List<String> getRoutines() {
     return routines;
   }
 
-  public void setRoutines(List<Object> routines) {
+  public void setRoutines(List<String> routines) {
     this.routines = routines;
   }
 
