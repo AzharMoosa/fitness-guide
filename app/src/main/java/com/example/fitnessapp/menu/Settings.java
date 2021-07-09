@@ -58,11 +58,6 @@ public class Settings extends Fragment {
     }
   }
 
-  public void signOut(View v) {
-    clearToken(getContext());
-    startActivity(new Intent(v.getContext(), MainActivity.class));
-  }
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

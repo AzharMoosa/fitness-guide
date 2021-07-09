@@ -21,20 +21,20 @@
         app:srcCompat="@mipmap/dumbbell_icon" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="308dp"
-        android:layout_height="231dp"
-        android:fontFamily="@font/montserrat"
-        android:lineSpacingExtra="14sp"
-        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_nunc_gravida_lobortis_nisl_ac_pellentesque"
-        android:textColor="@color/primary_text"
-        android:textSize="27sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+      android:id="@+id/textView2"
+      android:layout_width="308dp"
+      android:layout_height="231dp"
+      android:fontFamily="@font/montserrat"
+      android:lineSpacingExtra="14sp"
+      android:text="@string/the_ultimate_all_in_one_fitness_application_to_track_your_physical_health_workouts_and_nutrition"
+      android:textColor="@color/primary_text"
+      android:textSize="27sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.495"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.464" />
 
     <Button
         android:id="@+id/login_main"
