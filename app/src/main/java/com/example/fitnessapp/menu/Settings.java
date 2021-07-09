@@ -1,10 +1,15 @@
 package com.example.fitnessapp.menu;
 
+import static com.example.fitnessapp.auth.Authentication.clearToken;
+
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.fragment.app.Fragment;
+import com.example.fitnessapp.MainActivity;
 import com.example.fitnessapp.R;
 
 /**
@@ -53,10 +58,20 @@ public class Settings extends Fragment {
     }
   }
 
+  public void signOut(View v) {
+    clearToken(getContext());
+    startActivity(new Intent(v.getContext(), MainActivity.class));
+  }
+
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_settings, container, false);
+    View view = inflater.inflate(R.layout.fragment_settings, container, false);
+    TextView signOutBtn = view.findViewById(R.id.sign_out);
+    signOutBtn.setOnClickListener(v -> {
+      clearToken(getContext());
+      startActivity(new Intent(v.getContext(), MainActivity.class));
+    });
+    return view;
   }
 }

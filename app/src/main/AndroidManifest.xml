@@ -10,7 +10,11 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".routines.EditRoutine"></activity>
+    <activity android:name=".settings.About"></activity>
+    <activity android:name=".settings.HealthInformation" />
+    <activity android:name=".settings.ChatSettings" />
+    <activity android:name=".settings.UserSettings" />
+    <activity android:name=".routines.EditRoutine" />
     <activity android:name=".routines.CreateRoutine" />
     <activity android:name=".routines.ViewRoutine" />
     <activity android:name=".routines.Routines" />

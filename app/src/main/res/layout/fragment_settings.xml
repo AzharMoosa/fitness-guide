@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".menu.Settings">
 
   <!-- TODO: Update blank fragment layout -->
-  <TextView
+  <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="Settings" />
+    android:background="@color/primary_bg">
+    <TextView
+      android:id="@+id/textView13"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:fontFamily="@font/montserrat_bold"
+      android:text="@string/settings"
+      android:textColor="@color/red"
+      android:textSize="32sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.102"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.044" />
+    <TextView
+      android:id="@+id/textView14"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/user_settings"
+      android:textColor="@color/primary_text"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.12"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.185" />
+    <TextView
+      android:id="@+id/textView17"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/health_information"
+      android:textColor="@color/primary_text"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.175"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.502" />
+    <TextView
+      android:id="@+id/textView18"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/about"
+      android:textColor="@color/primary_text"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.084"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.658" />
+    <TextView
+      android:id="@+id/sign_out"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/sign_out"
+      android:textColor="@color/primary_text"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.094"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.814" />
+    <TextView
+      android:id="@+id/textView15"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/chat_settings"
+      android:textColor="@color/primary_text"
+      android:textSize="30sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.121"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.342" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
