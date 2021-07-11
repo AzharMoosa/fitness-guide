@@ -13,7 +13,6 @@ public interface ApiInterface {
   @GET("auth")
   Call<UserData> getUserData(@Header("x-auth-token") String auth);
 
-
   @GET("routines")
   Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
 

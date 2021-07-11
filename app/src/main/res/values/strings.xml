@@ -20,7 +20,6 @@
   <string name="workout_log">Workout Log</string>
   <string name="nutrition_track">Nutrition Track</string>
   <string name="workout_schedule">Workout Schedule</string>
-  <string name="health">Health</string>
   <string name="user_info">User Info</string>
   <string name="routines">Routines</string>
   <string name="back_button">Back Button</string>
@@ -35,4 +34,9 @@
   <string name="about">About</string>
   <string name="sign_out">Sign Out</string>
   <string name="the_ultimate_all_in_one_fitness_application_to_track_your_physical_health_workouts_and_nutrition">The ultimate all in one fitness application to track your physical health, workouts, and nutrition.</string>
+  <string name="chat">Chat</string>
+  <string name="general">General</string>
+  <string name="fitness">Fitness</string>
+  <string name="nutrition">Nutrition</string>
+  <string name="health">Health</string>
 </resources>
