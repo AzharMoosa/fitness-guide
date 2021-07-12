@@ -7,4 +7,48 @@
   android:background="@color/primary_bg"
   tools:context=".chat.ChatRoom">
 
+  <TextView
+    android:id="@+id/chat_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat_bold"
+    android:textColor="@color/red"
+    android:textSize="32sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.091"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023" />
+  <EditText
+    android:id="@+id/text_message"
+    android:layout_width="308dp"
+    android:layout_height="38dp"
+    android:paddingLeft="10sp"
+    android:paddingRight="10sp"
+    android:background="@color/primary_text"
+    android:ems="10"
+    android:fontFamily="@font/montserrat"
+    android:hint="Send Message..."
+    android:inputType="textMultiLine"
+    android:textColor="@color/primary_bg"
+    android:textSize="16sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.252"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.971" />
+  <ImageButton
+    android:id="@+id/imageButton7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.932"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.971"
+    app:srcCompat="@drawable/send_message" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
@@ -40,6 +41,8 @@ public class ChatRoom extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_chat_room);
     roomName = getIntent().getStringExtra("roomName");
+    TextView chatTitle = findViewById(R.id.chat_title);
+    chatTitle.setText(roomName);
     mSocket.on(Socket.EVENT_CONNECT, onConnect);
     mSocket.on("newUserToChatRoom", onNewUser);
     mSocket.on("updateChat", onUpdateChat);
@@ -65,7 +68,8 @@ public class ChatRoom extends AppCompatActivity {
                               if (response.body() != null) {
                                 name = response.body().getName();
                                 try {
-                                  String jsonString = "{ name: '" + name + "', roomName: '" + roomName + "' }";
+                                  String jsonString =
+                                      "{ name: '" + name + "', roomName: '" + roomName + "' }";
                                   JSONObject jsonData = new JSONObject(jsonString);
                                   mSocket.emit("subscribe", jsonData);
                                 } catch (JSONException e) {

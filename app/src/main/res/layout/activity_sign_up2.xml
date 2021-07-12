@@ -76,7 +76,6 @@
         android:id="@+id/email_signup"
         android:layout_width="366dp"
         android:layout_height="70dp"
-        android:autofillHints=""
         android:backgroundTint="@color/primary_text"
         android:ems="10"
         android:fontFamily="@font/montserrat"
@@ -97,7 +96,6 @@
         android:id="@+id/password_signup"
         android:layout_width="366dp"
         android:layout_height="70dp"
-        android:autofillHints=""
         android:backgroundTint="@color/primary_text"
         android:ems="10"
         android:fontFamily="@font/montserrat"
@@ -117,7 +115,6 @@
         android:id="@+id/confirm_password"
         android:layout_width="366dp"
         android:layout_height="70dp"
-        android:autofillHints=""
         android:backgroundTint="@color/primary_text"
         android:ems="10"
         android:fontFamily="@font/montserrat"
@@ -149,6 +146,5 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.281" />
 </androidx.constraintlayout.widget.ConstraintLayout>
