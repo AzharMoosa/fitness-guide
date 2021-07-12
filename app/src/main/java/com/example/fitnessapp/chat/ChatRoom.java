@@ -4,8 +4,16 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.UserData;
@@ -13,6 +21,8 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import retrofit2.Call;
@@ -25,11 +35,16 @@ public class ChatRoom extends AppCompatActivity {
   private String name = "Has Not Changed";
   private String roomName;
   private Boolean isConnected = true;
+  private List<Message> messageList;
+  private RecyclerView recyclerView;
+  private ChatRoomAdapter chatRoomAdapter;
+  private EditText message;
+  private ImageButton send;
 
   {
     try {
       //      mSocket = IO.socket("https://fitness-application-api.herokuapp.com");
-      mSocket = IO.socket("http://172.26.97.109:5000");
+      mSocket = IO.socket("http://172.26.98.49:5000");
 
     } catch (URISyntaxException e) {
       e.printStackTrace();
@@ -43,11 +58,47 @@ public class ChatRoom extends AppCompatActivity {
     roomName = getIntent().getStringExtra("roomName");
     TextView chatTitle = findViewById(R.id.chat_title);
     chatTitle.setText(roomName);
+
+    messageList = new ArrayList<>();
+    recyclerView = findViewById(R.id.message_list);
+    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+    recyclerView.setLayoutManager(mLayoutManager);
+    recyclerView.setItemAnimator(new DefaultItemAnimator());
+    chatRoomAdapter = new ChatRoomAdapter(messageList);
+    chatRoomAdapter.notifyDataSetChanged();
+    recyclerView.setAdapter(chatRoomAdapter);
+
+    send = findViewById(R.id.send_msg);
+
+    send.setOnClickListener(
+        new OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            if (!message.getText().toString().isEmpty()) {
+              String jsonString =
+                  "{ messageContent: '"
+                      + message.getText().toString()
+                      + "', roomName: '"
+                      + roomName
+                      + "' }";
+              try {
+                JSONObject jsonData = new JSONObject(jsonString);
+                mSocket.emit("newMessage", jsonData);
+              } catch (JSONException e) {
+                e.printStackTrace();
+              }
+              message.setText(" ");
+            }
+          }
+        });
+
+    message = findViewById(R.id.text_message);
+    mSocket.connect();
+
     mSocket.on(Socket.EVENT_CONNECT, onConnect);
     mSocket.on("newUserToChatRoom", onNewUser);
     mSocket.on("updateChat", onUpdateChat);
     mSocket.on("userLeftChatRoom", onUserLeft);
-    mSocket.connect();
   }
 
   private Emitter.Listener onConnect =
@@ -91,13 +142,40 @@ public class ChatRoom extends AppCompatActivity {
   private Emitter.Listener onNewUser =
       new Emitter.Listener() {
         @Override
-        public void call(Object... args) {}
+        public void call(Object... args) {
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              Toast.makeText(
+                  ChatRoom.this, args[0].toString() + " has joined the chat", Toast.LENGTH_SHORT)
+                  .show();
+            }
+          });
+        }
       };
 
   private Emitter.Listener onUpdateChat =
       new Emitter.Listener() {
         @Override
-        public void call(Object... args) {}
+        public void call(Object... args) {
+          runOnUiThread(
+              new Runnable() {
+                @Override
+                public void run() {
+                  JSONObject data = (JSONObject) args[0];
+                  try {
+                    String username = data.getString("name");
+                    String messageContent = data.getString("messageContent");
+                    Message newMessage = new Message(username, messageContent);
+                    messageList.add(newMessage);
+                    chatRoomAdapter.notifyItemInserted(messageList.size());
+                    recyclerView.scrollToPosition(messageList.size() - 1);
+                  } catch (JSONException e) {
+                    e.printStackTrace();
+                  }
+                }
+              });
+        }
       };
 
   private Emitter.Listener onUserLeft =
