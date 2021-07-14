@@ -9,6 +9,7 @@ import static com.example.fitnessapp.constants.Constants.THURSDAY;
 import static com.example.fitnessapp.constants.Constants.TUESDAY;
 import static com.example.fitnessapp.constants.Constants.WEDNESDAY;
 
+import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.View;
@@ -48,10 +49,10 @@ public class ViewRoutine extends AppCompatActivity {
     initRoutines();
   }
 
+  @RequiresApi(api = VERSION_CODES.N)
   private void initRoutines() {
-    for (String sessionsID : currentRoutine.getRoutines()) {
-      getSessions(sessionsID);
-    }
+    sessions.addAll(currentRoutine.getRoutines());
+    addExercises();
   }
 
   private void getSessions(String id) {
@@ -162,6 +163,6 @@ public class ViewRoutine extends AppCompatActivity {
 
           }
         });
-    this.finish();
+    startActivity(new Intent(ViewRoutine.this, Routines.class));
   }
 }

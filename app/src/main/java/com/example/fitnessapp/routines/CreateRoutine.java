@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,9 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.ExerciseData;
 import com.example.fitnessapp.api.RoutinesData;
-import com.example.fitnessapp.api.SessionData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -169,7 +166,6 @@ public class CreateRoutine extends AppCompatActivity {
                               exerciseName,
                               Integer.parseInt(setNumber),
                               Integer.parseInt(repNumber)));
-                      apiCreateExercise(day, exerciseName,  Integer.parseInt(setNumber),  Integer.parseInt(repNumber));
                       refreshExerciseList();
                     } else {
                       dialog.cancel();
@@ -263,9 +259,7 @@ public class CreateRoutine extends AppCompatActivity {
               Routine routine = new Routine(routineName, isActive, sessions);
 
               // Call API
-              for (String day : days) {
-                apiCreateSession(day, routine);
-              }
+              apiCreateRoutine(routine);
             }
           }
         });
@@ -282,56 +276,9 @@ public class CreateRoutine extends AppCompatActivity {
     builder.show();
   }
 
-  private void apiCreateExercise(String day, String name, Integer sets, Integer reps) {
-    final ExerciseData exercise = new ExerciseData(name, sets, reps);
-    ApiUtilities.getApiInterface()
-        .createExercise(getToken(this), exercise).enqueue(new Callback<ExerciseData>() {
-      @Override
-      public void onResponse(Call<ExerciseData> call, Response<ExerciseData> response) {
-
-      }
-
-      @Override
-      public void onFailure(Call<ExerciseData> call, Throwable t) {
-        Log.e("Error", t.getMessage());
-      }
-    });
-  }
-
-  @RequiresApi(api = VERSION_CODES.N)
-  private void apiCreateSession(String day, Routine routine) {
-    List<Exercise> idList =
-        exercises.stream()
-            .filter(exercise -> exercise.getDay() != null)
-            .filter(exercise -> exercise.getDay().equals(day))
-            .collect(Collectors.toList());
-    final SessionData session = new SessionData(day, idList);
-    ApiUtilities.getApiInterface()
-        .createSession(getToken(this), session)
-        .enqueue(
-            new Callback<SessionData>() {
-              @Override
-              public void onResponse(Call<SessionData> call, Response<SessionData> response) {
-                if (response.body() != null) {
-                  sessionID.add(response.body().getId());
-                  dayCount++;
-                }
-
-                if (dayCount >= 7) {
-                  apiCreateRoutine(routine);
-                }
-              }
-
-              @Override
-              public void onFailure(Call<SessionData> call, Throwable t) {
-                Log.e("Error", t.getMessage());
-              }
-            });
-  }
-
   @RequiresApi(api = VERSION_CODES.N)
   private void apiCreateRoutine(Routine routine) {
-    final RoutinesData routinesData = new RoutinesData(routine.getName(), routine.isActive(), sessionID);
+    final RoutinesData routinesData = new RoutinesData(routine.getName(), routine.isActive(), sessions);
     ApiUtilities.getApiInterface()
         .createRoutine(getToken(this), routinesData)
         .enqueue(new Callback<RoutinesData>() {

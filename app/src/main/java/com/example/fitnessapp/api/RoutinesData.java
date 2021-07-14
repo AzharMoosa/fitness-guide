@@ -1,5 +1,6 @@
 package com.example.fitnessapp.api;
 
+import com.example.fitnessapp.routines.Session;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
@@ -13,7 +14,7 @@ public class RoutinesData implements Serializable {
 
   @SerializedName("routines")
   @Expose
-  private List<String> routines = null;
+  private List<Session> routines = null;
 
   @SerializedName("_id")
   @Expose
@@ -35,7 +36,7 @@ public class RoutinesData implements Serializable {
   @Expose
   private Integer v;
 
-  public RoutinesData(String name, Boolean isActive, List<String> routines) {
+  public RoutinesData(String name, Boolean isActive, List<Session> routines) {
     this.name = name;
     this.isActive = isActive;
     this.routines = routines;
@@ -49,11 +50,11 @@ public class RoutinesData implements Serializable {
     this.isActive = isActive;
   }
 
-  public List<String> getRoutines() {
+  public List<Session> getRoutines() {
     return routines;
   }
 
-  public void setRoutines(List<String> routines) {
+  public void setRoutines(List<Session> routines) {
     this.routines = routines;
   }
 
