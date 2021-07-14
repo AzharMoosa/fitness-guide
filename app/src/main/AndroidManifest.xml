@@ -10,7 +10,9 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".chat.ChatRoom"></activity>
+    <activity
+      android:name=".chat.ChatRoom"
+      android:windowSoftInputMode="adjustResize" />
     <activity android:name=".settings.About" />
     <activity android:name=".settings.HealthInformation" />
     <activity android:name=".settings.ChatSettings" />

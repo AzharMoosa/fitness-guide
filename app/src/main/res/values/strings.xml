@@ -39,4 +39,5 @@
   <string name="fitness">Fitness</string>
   <string name="nutrition">Nutrition</string>
   <string name="health">Health</string>
+  <string name="view_routine">View Routine</string>
 </resources>

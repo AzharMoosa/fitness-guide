@@ -88,7 +88,9 @@ public class Routines extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("current_routine", routine.getId());
         editor.apply();
-        startActivity(new Intent(Routines.this,ViewRoutine.class));
+        Intent intent = new Intent(Routines.this,ViewRoutine.class);
+        intent.putExtra("routineData", routine);
+        startActivity(intent);
       }
     });
     row.addView(routineName);

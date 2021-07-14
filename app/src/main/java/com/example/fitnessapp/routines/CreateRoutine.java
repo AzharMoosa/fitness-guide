@@ -46,7 +46,6 @@ public class CreateRoutine extends AppCompatActivity {
   private LinearLayout createRoutineList;
   private final List<Exercise> exercises = new ArrayList<>();
   private final List<Session> sessions = new ArrayList<>();
-  private final List<ExerciseID> exerciseID = new ArrayList<>();
   private final List<String> sessionID = new ArrayList<>();
   private final String[] days = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY};
   private int dayCount = 0;
@@ -289,9 +288,7 @@ public class CreateRoutine extends AppCompatActivity {
         .createExercise(getToken(this), exercise).enqueue(new Callback<ExerciseData>() {
       @Override
       public void onResponse(Call<ExerciseData> call, Response<ExerciseData> response) {
-        if (response.body() != null) {
-          CreateRoutine.this.exerciseID.add(new ExerciseID(day, response.body().getId()));
-        }
+
       }
 
       @Override
@@ -303,11 +300,10 @@ public class CreateRoutine extends AppCompatActivity {
 
   @RequiresApi(api = VERSION_CODES.N)
   private void apiCreateSession(String day, Routine routine) {
-    List<String> idList =
-        exerciseID.stream()
+    List<Exercise> idList =
+        exercises.stream()
             .filter(exercise -> exercise.getDay() != null)
             .filter(exercise -> exercise.getDay().equals(day))
-            .map(ExerciseID::getId)
             .collect(Collectors.toList());
     final SessionData session = new SessionData(day, idList);
     ApiUtilities.getApiInterface()

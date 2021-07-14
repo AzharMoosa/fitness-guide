@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class ChatRoom extends AppCompatActivity {
   {
     try {
       //      mSocket = IO.socket("https://fitness-application-api.herokuapp.com");
-      mSocket = IO.socket("http://172.26.98.49:5000");
+      mSocket = IO.socket("http://172.26.97.100:5000");
 
     } catch (URISyntaxException e) {
       e.printStackTrace();
@@ -54,6 +55,7 @@ public class ChatRoom extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     setContentView(R.layout.activity_chat_room);
     roomName = getIntent().getStringExtra("roomName");
     TextView chatTitle = findViewById(R.id.chat_title);
