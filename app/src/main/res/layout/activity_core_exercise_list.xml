@@ -5,6 +5,35 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/primary_bg"
+  android:onClick="backBtn"
   tools:context=".exercise_lists.CoreExerciseList">
 
+  <ImageButton
+    android:id="@+id/imageButton8"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8sp"
+    android:background="@null"
+    android:onClick="backBtn"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.932"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023"
+    app:srcCompat="@drawable/back_btn" />
+  <TextView
+    android:id="@+id/textView24"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat_bold"
+    android:text="Core Exercises"
+    android:textColor="@color/red"
+    android:textSize="32sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.142"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023" />
 </androidx.constraintlayout.widget.ConstraintLayout>

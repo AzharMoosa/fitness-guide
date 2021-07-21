@@ -7,4 +7,32 @@
   android:background="@color/primary_bg"
   tools:context=".exercise_lists.ShoulderExerciseList">
 
+  <TextView
+    android:id="@+id/textView25"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat_bold"
+    android:text="Shoulder Exercises"
+    android:textColor="@color/red"
+    android:textSize="28sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.116"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023" />
+  <ImageButton
+    android:id="@+id/imageButton9"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5sp"
+    android:background="@null"
+    android:onClick="backBtn"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.956"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023"
+    app:srcCompat="@drawable/back_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
