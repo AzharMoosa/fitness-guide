@@ -26,12 +26,9 @@ public interface ApiInterface {
   @GET("sessions/{id}")
   Call<Session> getSessionDataById(@Header("x-auth-token") String auth, @Path("id") String id);
 
-  @POST("exercises")
-  Call<ExerciseData> createExercise(@Header("x-auth-token") String auth, @Body ExerciseData exerciseData);
-
-  @POST("sessions")
-  Call<SessionData> createSession(@Header("x-auth-token") String auth, @Body SessionData sessionData);
-
   @POST("routines")
   Call<RoutinesData> createRoutine(@Header("x-auth-token") String auth, @Body RoutinesData routineData);
+
+  @GET("exercises/type/{type}")
+  Call<List<ArmExercisesData>> getExercisesByType(@Path("type") String type);
 }
