@@ -9,9 +9,9 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import com.example.fitnessapp.api.ExerciseData;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.ArmExercisesData;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,26 +31,26 @@ public class ArmExerciseList extends AppCompatActivity {
 
   private void getArmExercises() {
     ApiUtilities.getApiInterface()
-        .getExercisesByType("Arm Exercises").enqueue(new Callback<List<ArmExercisesData>>() {
+        .getExercisesByType("Arm Exercises").enqueue(new Callback<List<ExerciseData>>() {
       @Override
-      public void onResponse(Call<List<ArmExercisesData>> call,
-          Response<List<ArmExercisesData>> response) {
+      public void onResponse(Call<List<ExerciseData>> call,
+          Response<List<ExerciseData>> response) {
         if (response.body() != null) {
-          List<ArmExercisesData> exercises = response.body();
-          for (ArmExercisesData exercise : exercises) {
+          List<ExerciseData> exercises = response.body();
+          for (ExerciseData exercise : exercises) {
             armExerciseList.addView(createRow(exercise));
           }
         }
       }
 
       @Override
-      public void onFailure(Call<List<ArmExercisesData>> call, Throwable t) {
+      public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
         Log.e("Error", t.getMessage());
       }
     });
   }
 
-  private TableRow createRow(ArmExercisesData routine) {
+  private TableRow createRow(ExerciseData routine) {
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(0, 0, 0, 100);

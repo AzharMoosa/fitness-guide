@@ -30,5 +30,5 @@ public interface ApiInterface {
   Call<RoutinesData> createRoutine(@Header("x-auth-token") String auth, @Body RoutinesData routineData);
 
   @GET("exercises/type/{type}")
-  Call<List<ArmExercisesData>> getExercisesByType(@Path("type") String type);
+  Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
 }
