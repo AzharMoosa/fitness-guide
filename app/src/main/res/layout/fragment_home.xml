@@ -41,7 +41,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.243" />
     <ImageButton
-      android:id="@+id/imageButton4"
+      android:id="@+id/health_information_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
@@ -54,7 +54,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.526" />
     <ImageButton
-      android:id="@+id/imageButton3"
+      android:id="@+id/workout_log_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
@@ -67,7 +67,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.526" />
     <ImageButton
-      android:id="@+id/imageButton5"
+      android:id="@+id/nutrition_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
@@ -80,7 +80,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.813" />
     <ImageButton
-      android:id="@+id/imageButton6"
+      android:id="@+id/user_info_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"
@@ -93,7 +93,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.813" />
     <ImageButton
-      android:id="@+id/imageButton2"
+      android:id="@+id/schedule_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:background="@null"

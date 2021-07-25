@@ -91,8 +91,6 @@ public class Authentication {
     editor.apply();
   }
 
-
-
   public static void clearToken(Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     SharedPreferences.Editor editor = preferences.edit();

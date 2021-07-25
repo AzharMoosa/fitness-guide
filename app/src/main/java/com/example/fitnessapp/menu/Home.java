@@ -15,6 +15,10 @@ import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.UserData;
 import com.example.fitnessapp.routines.Routines;
+import com.example.fitnessapp.schedule.WorkoutSchedule;
+import com.example.fitnessapp.settings.HealthInformation;
+import com.example.fitnessapp.settings.UserSettings;
+import com.example.fitnessapp.workout_log.WorkoutLog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,10 +58,6 @@ public class Home extends Fragment {
     return fragment;
   }
 
-  public void routineView(View v) {
-    startActivity(new Intent(this.getContext(), Routines.class));
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -76,8 +76,20 @@ public class Home extends Fragment {
     homeUI = view.findViewById(R.id.home_ui);
     homeUI.setVisibility(View.INVISIBLE);
     spinner = view.findViewById(R.id.spinner_routines);
-    ImageButton button = view.findViewById(R.id.routines_btn);
-    button.setOnClickListener(v -> startActivity(new Intent(v.getContext(), Routines.class)));
+    ImageButton routinesButton = view.findViewById(R.id.routines_btn);
+    ImageButton scheduleButton = view.findViewById(R.id.schedule_btn);
+    ImageButton workoutLogButton = view.findViewById(R.id.workout_log_btn);
+    ImageButton healthInfoButton = view.findViewById(R.id.health_information_btn);
+    ImageButton nutritionButton = view.findViewById(R.id.nutrition_btn);
+    ImageButton userInfoButton = view.findViewById(R.id.user_info_btn);
+
+    routinesButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), Routines.class)));
+    scheduleButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), WorkoutSchedule.class)));
+    workoutLogButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), WorkoutLog.class)));
+    healthInfoButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), HealthInformation.class)));
+    nutritionButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), Nutrition.class)));
+    userInfoButton.setOnClickListener(v -> startActivity(new Intent(v.getContext(), UserSettings.class)));
+
     ApiUtilities.getApiInterface()
         .getUserData(getToken(getContext()))
         .enqueue(

@@ -26,7 +26,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.044" />
     <TextView
-      android:id="@+id/textView14"
+      android:id="@+id/user_settings"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/user_settings"
@@ -39,7 +39,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.185" />
     <TextView
-      android:id="@+id/textView17"
+      android:id="@+id/health_info"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/health_information"
@@ -52,7 +52,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.502" />
     <TextView
-      android:id="@+id/textView18"
+      android:id="@+id/about_settings"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/about"
@@ -78,7 +78,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.814" />
     <TextView
-      android:id="@+id/textView15"
+      android:id="@+id/chat_settings"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/chat_settings"
