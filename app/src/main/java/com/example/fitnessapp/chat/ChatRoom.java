@@ -44,9 +44,7 @@ public class ChatRoom extends AppCompatActivity {
 
   {
     try {
-      //      mSocket = IO.socket("https://fitness-application-api.herokuapp.com");
-      mSocket = IO.socket("http://172.26.97.100:5000");
-
+      mSocket = IO.socket("https://fitness-application-api.herokuapp.com");
     } catch (URISyntaxException e) {
       e.printStackTrace();
     }
@@ -145,14 +143,17 @@ public class ChatRoom extends AppCompatActivity {
       new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-          runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-              Toast.makeText(
-                  ChatRoom.this, args[0].toString() + " has joined the chat", Toast.LENGTH_SHORT)
-                  .show();
-            }
-          });
+          runOnUiThread(
+              new Runnable() {
+                @Override
+                public void run() {
+                  Toast.makeText(
+                          ChatRoom.this,
+                          args[0].toString() + " has joined the chat",
+                          Toast.LENGTH_SHORT)
+                      .show();
+                }
+              });
         }
       };
 

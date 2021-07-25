@@ -28,8 +28,8 @@
       android:textSize="32sp" />
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/message_list"
-      android:layout_width="279dp"
-      android:layout_height="wrap_content"
+      android:layout_width="328dp"
+      android:layout_height="301dp"
       android:layout_weight="3"
       android:layout_marginTop="10sp"
       android:layout_gravity="center"

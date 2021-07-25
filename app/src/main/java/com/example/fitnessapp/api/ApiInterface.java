@@ -20,6 +20,9 @@ public interface ApiInterface {
   @GET("routines")
   Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
 
+  @GET("routines/active")
+  Call<List<RoutinesData>> getActiveRoutine(@Header("x-auth-token") String auth);
+
   @DELETE("routines/{id}")
   Call<ResponseBody> deleteRoutine(@Header("x-auth-token") String auth, @Path("id") String id);
 

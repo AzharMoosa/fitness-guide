@@ -1,12 +1,14 @@
 package com.example.fitnessapp.auth;
 
 import static com.example.fitnessapp.constants.Constants.API_URL;
+import static com.example.fitnessapp.constants.Constants.ID;
 import static com.example.fitnessapp.constants.Constants.TOKEN;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -29,8 +31,12 @@ public class Authentication {
         data, response -> {
       try {
         String token = response.getString(TOKEN);
+        String id = response.getString("_id");
+        Log.e("token", token);
+        Log.e("id", id);
         context.startActivity(new Intent(context, Dashboard.class));
         saveToken(token, context);
+        saveID(id, context);
       } catch (JSONException e) {
         e.printStackTrace();
       }
@@ -82,6 +88,18 @@ public class Authentication {
   public static String getToken(Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     return preferences.getString("token", "");
+  }
+
+  public static String getUserID(Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    return preferences.getString("id", "");
+  }
+
+  private static void saveID(String id, Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString(ID, id);
+    editor.apply();
   }
 
   private static void saveToken(String token, Context context) {

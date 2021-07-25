@@ -28,6 +28,19 @@
     android:layout_height="match_parent">
 
     <ImageButton
+      android:id="@+id/user_info_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@null"
+      android:contentDescription="@string/user_info"
+      android:src="@drawable/user_info"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.171"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.821" />
+    <ImageButton
       android:id="@+id/routines_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -66,32 +79,6 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.526" />
-    <ImageButton
-      android:id="@+id/nutrition_btn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@null"
-      android:contentDescription="@string/nutrition_track"
-      android:src="@drawable/nutrition_track"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.171"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.813" />
-    <ImageButton
-      android:id="@+id/user_info_btn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@null"
-      android:contentDescription="@string/user_info"
-      android:src="@drawable/user_info"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.818"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.813" />
     <ImageButton
       android:id="@+id/schedule_btn"
       android:layout_width="wrap_content"

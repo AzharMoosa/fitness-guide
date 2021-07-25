@@ -10,7 +10,7 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".workout_log.WorkoutLog"></activity>
+    <activity android:name=".current_workout.CurrentWorkout"></activity>
     <activity android:name=".schedule.WorkoutSchedule" />
     <activity android:name=".exercise_lists.LegExerciseList" />
     <activity android:name=".exercise_lists.CoreExerciseList" />
