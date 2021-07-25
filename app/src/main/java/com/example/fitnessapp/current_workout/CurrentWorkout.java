@@ -2,6 +2,7 @@ package com.example.fitnessapp.current_workout;
 
 import static com.example.fitnessapp.auth.Authentication.getToken;
 
+import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.RoutinesData;
@@ -125,6 +127,6 @@ public class CurrentWorkout extends AppCompatActivity {
   }
 
   public void backBtn(View v) {
-    this.finish();
+    startActivity(new Intent(this, Dashboard.class));
   }
 }

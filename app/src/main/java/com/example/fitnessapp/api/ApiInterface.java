@@ -9,6 +9,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
@@ -26,11 +27,16 @@ public interface ApiInterface {
   @DELETE("routines/{id}")
   Call<ResponseBody> deleteRoutine(@Header("x-auth-token") String auth, @Path("id") String id);
 
+  @PUT("routines/{id}")
+  Call<RoutinesData> updateRoutine(
+      @Header("x-auth-token") String auth, @Body RoutinesData routineData, @Path("id") String id);
+
   @GET("sessions/{id}")
   Call<Session> getSessionDataById(@Header("x-auth-token") String auth, @Path("id") String id);
 
   @POST("routines")
-  Call<RoutinesData> createRoutine(@Header("x-auth-token") String auth, @Body RoutinesData routineData);
+  Call<RoutinesData> createRoutine(
+      @Header("x-auth-token") String auth, @Body RoutinesData routineData);
 
   @GET("exercises/type/{type}")
   Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);

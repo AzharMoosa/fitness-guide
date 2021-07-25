@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
+import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.RoutinesData;
@@ -62,7 +63,7 @@ public class Routines extends AppCompatActivity {
   }
 
   public void backBtn(View v) {
-    this.finish();
+    startActivity(new Intent(this, Dashboard.class));
   }
 
   public void createRoutine(View v) {

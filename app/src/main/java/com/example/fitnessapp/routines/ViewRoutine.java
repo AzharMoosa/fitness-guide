@@ -80,7 +80,7 @@ public class ViewRoutine extends AppCompatActivity {
   @RequiresApi(api = VERSION_CODES.N)
   private void addExercises() {
     for (Session session : sessions) {
-        exercises.addAll(session.getExercises());
+      exercises.addAll(session.getExercises());
     }
     refreshExerciseList();
   }
@@ -147,22 +147,35 @@ public class ViewRoutine extends AppCompatActivity {
   }
 
   public void backBtn(View v) {
-    this.finish();
+    startActivity(new Intent(this, Routines.class));
+  }
+
+  public void setActive(View v) {
+    final RoutinesData routinesData =
+        new RoutinesData(currentRoutine.getName(), true, currentRoutine.getRoutines());
+    ApiUtilities.getApiInterface()
+        .updateRoutine(getToken(this), routinesData, currentRoutine.getId())
+        .enqueue(
+            new Callback<RoutinesData>() {
+              @Override
+              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) { startActivity(new Intent(getApplicationContext(), Routines.class));}
+
+              @Override
+              public void onFailure(Call<RoutinesData> call, Throwable t) {}
+            });
   }
 
   public void deleteRoutine(View v) {
-    ApiUtilities.getApiInterface().deleteRoutine(getToken(this), currentRoutine.getId()).enqueue(
-        new Callback<ResponseBody>() {
-          @Override
-          public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+    ApiUtilities.getApiInterface()
+        .deleteRoutine(getToken(this), currentRoutine.getId())
+        .enqueue(
+            new Callback<ResponseBody>() {
+              @Override
+              public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {}
 
-          }
-
-          @Override
-          public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-          }
-        });
+              @Override
+              public void onFailure(Call<ResponseBody> call, Throwable t) {}
+            });
     startActivity(new Intent(ViewRoutine.this, Routines.class));
   }
 }
