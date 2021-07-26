@@ -23,6 +23,22 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.566" />
+  <Button
+    android:id="@+id/update_user_btn4"
+    android:layout_width="244dp"
+    android:layout_height="55dp"
+    android:backgroundTint="@color/red"
+    android:fontFamily="@font/montserrat_bold"
+    android:onClick="resetToDefault"
+    android:text="Reset To Default"
+    android:textColor="@color/primary_text"
+    app:cornerRadius="11dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.497"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.693" />
   <EditText
     android:id="@+id/custom_name"
     android:layout_width="355dp"
@@ -31,7 +47,7 @@
     android:ems="10"
     android:fontFamily="@font/montserrat"
     android:hint="Custom Name"
-    android:inputType="textPersonName"
+    android:inputType="textNoSuggestions"
     android:textColor="@color/primary_text"
     android:textColorHint="@color/primary_text"
     android:textSize="20sp"

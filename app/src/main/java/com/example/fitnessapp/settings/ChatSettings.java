@@ -24,6 +24,7 @@ public class ChatSettings extends AppCompatActivity {
   private ChatInfo info;
   private String settingsID;
   private EditText customName;
+
   @SuppressLint("UseSwitchCompatOrMaterialCode")
   private Switch displayName;
 
@@ -63,28 +64,49 @@ public class ChatSettings extends AppCompatActivity {
     displayName.setChecked(info.getIsVisible());
   }
 
+  public void resetToDefault(View v) {
+    ChatInfo updatedInfo = new ChatInfo();
+    updatedInfo.setCustomName(null);
+    updatedInfo.setIsVisible(true);
+
+    ApiUtilities.getApiInterface()
+        .updateChatSettings(getToken(this), updatedInfo, settingsID)
+        .enqueue(
+            new Callback<SettingsData>() {
+              @Override
+              public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
+                if (response.body() != null) {
+                  info = response.body().getChatSettings();
+                  customName.setText(info.getCustomName());
+                  displayName.setChecked(info.getIsVisible());
+                }
+              }
+
+              @Override
+              public void onFailure(Call<SettingsData> call, Throwable t) {}
+            });
+  }
+
   public void updateChatSettings(View v) {
     ChatInfo updatedInfo = new ChatInfo();
     updatedInfo.setCustomName(customName.getText().toString());
     updatedInfo.setIsVisible(displayName.isChecked());
 
     ApiUtilities.getApiInterface()
-        .updateChatSettings(getToken(this), updatedInfo, settingsID).enqueue(
-        new Callback<SettingsData>() {
-          @Override
-          public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
-            if (response.body() != null) {
-              info = response.body().getChatSettings();
-              customName.setText(info.getCustomName());
-              displayName.setChecked(info.getIsVisible());
-            }
-          }
+        .updateChatSettings(getToken(this), updatedInfo, settingsID)
+        .enqueue(
+            new Callback<SettingsData>() {
+              @Override
+              public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
+                if (response.body() != null) {
+                  info = response.body().getChatSettings();
+                  customName.setText(info.getCustomName());
+                  displayName.setChecked(info.getIsVisible());
+                }
+              }
 
-          @Override
-          public void onFailure(Call<SettingsData> call, Throwable t) {
-
-          }
-        });
+              @Override
+              public void onFailure(Call<SettingsData> call, Throwable t) {}
+            });
   }
-
 }

@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
+import com.example.fitnessapp.api.ChatInfo;
+import com.example.fitnessapp.api.SettingsData;
 import com.example.fitnessapp.api.UserData;
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -33,7 +35,7 @@ import retrofit2.Response;
 public class ChatRoom extends AppCompatActivity {
 
   private Socket mSocket;
-  private String name = "Has Not Changed";
+  private String name = "";
   private String roomName;
   private Boolean isConnected = true;
   private List<Message> messageList;
@@ -41,6 +43,8 @@ public class ChatRoom extends AppCompatActivity {
   private ChatRoomAdapter chatRoomAdapter;
   private EditText message;
   private ImageButton send;
+  private String settingsID;
+  private ChatInfo info;
 
   {
     try {
@@ -55,6 +59,10 @@ public class ChatRoom extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     setContentView(R.layout.activity_chat_room);
+    getChatSettings();
+  }
+
+  private void initServer() {
     roomName = getIntent().getStringExtra("roomName");
     TextView chatTitle = findViewById(R.id.chat_title);
     chatTitle.setText(roomName);
@@ -101,6 +109,27 @@ public class ChatRoom extends AppCompatActivity {
     mSocket.on("userLeftChatRoom", onUserLeft);
   }
 
+  private void getChatSettings() {
+    ApiUtilities.getApiInterface()
+        .getSettings(getToken(this))
+        .enqueue(
+            new Callback<SettingsData>() {
+              @Override
+              public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
+                if (response.body() != null) {
+                  settingsID = response.body().getId();
+                  info = response.body().getChatSettings();
+                  initServer();
+                }
+              }
+
+              @Override
+              public void onFailure(Call<SettingsData> call, Throwable t) {
+                Log.e("Error", t.getMessage());
+              }
+            });
+  }
+
   private Emitter.Listener onConnect =
       new Emitter.Listener() {
         @Override
@@ -118,6 +147,12 @@ public class ChatRoom extends AppCompatActivity {
                                 Call<UserData> call, Response<UserData> response) {
                               if (response.body() != null) {
                                 name = response.body().getName();
+                                if (!info.getCustomName().equals("")) {
+                                  name = info.getCustomName();
+                                }
+                                if (!info.getIsVisible()) {
+                                  name = "Anonymous";
+                                }
                                 try {
                                   String jsonString =
                                       "{ name: '" + name + "', roomName: '" + roomName + "' }";
