@@ -89,7 +89,6 @@ public class HealthInformation extends AppCompatActivity {
               @Override
               public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
                 if (response.body() != null) {
-                  Log.e("s", response.body().getHealthInformation().getHeight().toString());
                   info = response.body().getHealthInformation();
                   dobInput.setText(info.getDateOfBirth());
                   genderInput.setText(info.getGender());

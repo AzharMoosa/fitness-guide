@@ -47,6 +47,9 @@ public interface ApiInterface {
   @PUT("settings/{id}")
   Call<SettingsData> updateHealthSettings(@Header("x-auth-token") String auth, @Body HealthInfo healthInfo, @Path("id") String id);
 
+  @PUT("settings/{id}")
+  Call<SettingsData> updateChatSettings(@Header("x-auth-token") String auth, @Body ChatInfo chatInfo, @Path("id") String id);
+
   @GET("exercises/type/{type}")
   Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
 }
