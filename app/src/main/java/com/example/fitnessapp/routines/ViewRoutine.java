@@ -38,7 +38,6 @@ public class ViewRoutine extends AppCompatActivity {
   private final List<Exercise> exercises = new ArrayList<>();
   private final String[] days = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY};
   private final List<Session> sessions = new ArrayList<>();
-  private int dayCount = 0;
 
   @RequiresApi(api = VERSION_CODES.N)
   @Override
@@ -53,28 +52,6 @@ public class ViewRoutine extends AppCompatActivity {
   private void initRoutines() {
     sessions.addAll(currentRoutine.getRoutines());
     addExercises();
-  }
-
-  private void getSessions(String id) {
-    ApiUtilities.getApiInterface()
-        .getSessionDataById(getToken(this), id)
-        .enqueue(
-            new Callback<Session>() {
-              @RequiresApi(api = VERSION_CODES.N)
-              @Override
-              public void onResponse(Call<Session> call, Response<Session> response) {
-                if (response.body() != null) {
-                  sessions.add(response.body());
-                  dayCount++;
-                  if (dayCount >= 7) {
-                    addExercises();
-                  }
-                }
-              }
-
-              @Override
-              public void onFailure(Call<Session> call, Throwable t) {}
-            });
   }
 
   @RequiresApi(api = VERSION_CODES.N)
@@ -163,6 +140,12 @@ public class ViewRoutine extends AppCompatActivity {
               @Override
               public void onFailure(Call<RoutinesData> call, Throwable t) {}
             });
+  }
+
+  public void editRoutine(View v) {
+    Intent intent = new Intent(this, EditRoutine.class);
+    intent.putExtra("routineData", getIntent().getSerializableExtra("routineData"));
+    startActivity(intent);
   }
 
   public void deleteRoutine(View v) {
