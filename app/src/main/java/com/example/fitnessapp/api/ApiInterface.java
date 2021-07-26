@@ -41,6 +41,12 @@ public interface ApiInterface {
   Call<RoutinesData> createRoutine(
       @Header("x-auth-token") String auth, @Body RoutinesData routineData);
 
+  @GET("settings")
+  Call<SettingsData> getSettings(@Header("x-auth-token") String auth);
+
+  @PUT("settings/{id}")
+  Call<SettingsData> updateHealthSettings(@Header("x-auth-token") String auth, @Body HealthInfo healthInfo, @Path("id") String id);
+
   @GET("exercises/type/{type}")
   Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
 }
