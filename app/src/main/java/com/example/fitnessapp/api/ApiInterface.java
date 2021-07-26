@@ -34,6 +34,9 @@ public interface ApiInterface {
   @GET("sessions/{id}")
   Call<Session> getSessionDataById(@Header("x-auth-token") String auth, @Path("id") String id);
 
+  @PUT("users/{id}")
+  Call<UserData> updateUser(@Header("x-auth-token") String auth, @Body UpdateUserData userData, @Path("id") String id);
+
   @POST("routines")
   Call<RoutinesData> createRoutine(
       @Header("x-auth-token") String auth, @Body RoutinesData routineData);

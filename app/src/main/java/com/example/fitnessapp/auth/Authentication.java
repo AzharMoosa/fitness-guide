@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -32,11 +31,13 @@ public class Authentication {
       try {
         String token = response.getString(TOKEN);
         String id = response.getString("_id");
-        Log.e("token", token);
-        Log.e("id", id);
+        String name = response.getString("name");
+        String email = response.getString("email");
         context.startActivity(new Intent(context, Dashboard.class));
         saveToken(token, context);
         saveID(id, context);
+        saveName(name, context);
+        saveEmail(email, context);
       } catch (JSONException e) {
         e.printStackTrace();
       }
@@ -95,14 +96,38 @@ public class Authentication {
     return preferences.getString("id", "");
   }
 
-  private static void saveID(String id, Context context) {
+  public static void saveID(String id, Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString(ID, id);
     editor.apply();
   }
 
-  private static void saveToken(String token, Context context) {
+  public static String getUserName(Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    return preferences.getString("name", "");
+  }
+
+  public static void saveName(String name, Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString("name", name);
+    editor.apply();
+  }
+
+  public static String getUserEmail(Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    return preferences.getString("email", "");
+  }
+
+  public static void saveEmail(String email, Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString("email", email);
+    editor.apply();
+  }
+
+  public static void saveToken(String token, Context context) {
     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString(TOKEN, token);
