@@ -11,6 +11,18 @@
     android:background="@color/primary_bg">
 
     <ImageButton
+      android:id="@+id/list_leg_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@null"
+      android:src="@drawable/legs"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.54"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/list_core_btn"
+      app:layout_constraintVertical_bias="0.1" />
+    <ImageButton
       android:id="@+id/list_shoulders_btn"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
@@ -22,7 +34,7 @@
       app:layout_constraintHorizontal_bias="0.488"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.214" />
+      app:layout_constraintVertical_bias="0.211" />
     <ImageButton
       android:id="@+id/list_chest_btn"
       android:layout_width="wrap_content"
@@ -34,7 +46,7 @@
       app:layout_constraintHorizontal_bias="0.487"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.3" />
+      app:layout_constraintVertical_bias="0.291" />
     <ImageButton
       android:id="@+id/list_arms_btn_left"
       android:layout_width="wrap_content"
@@ -43,36 +55,10 @@
       android:src="@drawable/arm_left"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.158"
+      app:layout_constraintHorizontal_bias="0.155"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.133" />
-    <ImageButton
-      android:id="@+id/list_leg_btn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@null"
-      android:src="@drawable/legs"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.54"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/list_core_btn"
-      app:layout_constraintVertical_bias="0.109" />
-    <ImageButton
-      android:id="@+id/imageButton19"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="10sp"
-      android:layout_marginRight="5sp"
-      android:background="@null"
-      android:src="@drawable/face"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.498"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.124" />
+      app:layout_constraintVertical_bias="0.127" />
     <ImageButton
       android:id="@+id/list_core_btn"
       android:layout_width="wrap_content"
@@ -86,7 +72,7 @@
       app:layout_constraintHorizontal_bias="0.498"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.425" />
+      app:layout_constraintVertical_bias="0.413" />
     <ImageButton
       android:id="@+id/list_arms_btn_right"
       android:layout_width="wrap_content"
@@ -98,7 +84,21 @@
       app:layout_constraintHorizontal_bias="0.815"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.128" />
+      app:layout_constraintVertical_bias="0.121" />
+    <ImageButton
+      android:id="@+id/imageButton19"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10sp"
+      android:layout_marginRight="5sp"
+      android:background="@null"
+      android:src="@drawable/face"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.118" />
     <TextView
       android:id="@+id/textView19"
       android:layout_width="wrap_content"

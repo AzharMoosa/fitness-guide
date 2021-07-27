@@ -43,22 +43,18 @@ public class CurrentWorkout extends AppCompatActivity {
     ApiUtilities.getApiInterface()
         .getActiveRoutine(getToken(this))
         .enqueue(
-            new Callback<List<RoutinesData>>() {
+            new Callback<RoutinesData>() {
               @RequiresApi(api = VERSION_CODES.N)
               @Override
-              public void onResponse(
-                  Call<List<RoutinesData>> call, Response<List<RoutinesData>> response) {
+              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
                 if (response.body() != null) {
-                  List<RoutinesData> routines = response.body();
-                  if (routines.size() > 0) {
-                    routine = routines.get(0);
-                    displayActiveRoutine();
-                  }
+                  routine = response.body();
+                  displayActiveRoutine();
                 }
               }
 
               @Override
-              public void onFailure(Call<List<RoutinesData>> call, Throwable t) {
+              public void onFailure(Call<RoutinesData> call, Throwable t) {
                 Log.e("Error", t.getMessage());
               }
             });
@@ -81,8 +77,7 @@ public class CurrentWorkout extends AppCompatActivity {
             .collect(Collectors.toList());
     for (Exercise exercise : dayExercises) {
       if (exercise.getName() != null && exercise.getSets() != 0 && exercise.getRepetitions() != 0) {
-        currentWorkoutList.addView(
-            createExerciseRow(exercise.formattedText()));
+        currentWorkoutList.addView(createExerciseRow(exercise.formattedText()));
       }
     }
   }

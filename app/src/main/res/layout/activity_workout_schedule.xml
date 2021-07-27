@@ -7,6 +7,38 @@
   android:background="@color/primary_bg"
   tools:context=".schedule.WorkoutSchedule">
 
+  <ScrollView
+    android:id="@+id/scrollVew5"
+    android:layout_width="382dp"
+    android:layout_height="583dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.428"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="1.0">
+    <LinearLayout
+      android:id="@+id/view_routine_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"></LinearLayout>
+  </ScrollView>
+  <ImageButton
+    android:id="@+id/back_btn7"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10sp"
+    android:background="@null"
+    android:contentDescription="@string/back_button"
+    android:onClick="backBtn"
+    android:src="@drawable/back_btn"
+    android:translationY="12sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.956"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.026" />
   <TextView
     android:id="@+id/textView28"
     android:layout_width="wrap_content"
@@ -20,5 +52,5 @@
     app:layout_constraintHorizontal_bias="0.111"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.023" />
+    app:layout_constraintVertical_bias="0.052" />
 </androidx.constraintlayout.widget.ConstraintLayout>

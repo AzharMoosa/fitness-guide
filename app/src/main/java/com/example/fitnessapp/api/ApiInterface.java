@@ -1,6 +1,5 @@
 package com.example.fitnessapp.api;
 
-import com.example.fitnessapp.routines.Session;
 import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,7 +27,7 @@ public interface ApiInterface {
   Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
 
   @GET("routines/active")
-  Call<List<RoutinesData>> getActiveRoutine(@Header("x-auth-token") String auth);
+  Call<RoutinesData> getActiveRoutine(@Header("x-auth-token") String auth);
 
   @DELETE("routines/{id}")
   Call<ResponseBody> deleteRoutine(@Header("x-auth-token") String auth, @Path("id") String id);
@@ -37,11 +36,9 @@ public interface ApiInterface {
   Call<RoutinesData> updateRoutine(
       @Header("x-auth-token") String auth, @Body RoutinesData routineData, @Path("id") String id);
 
-  @GET("sessions/{id}")
-  Call<Session> getSessionDataById(@Header("x-auth-token") String auth, @Path("id") String id);
-
   @PUT("users/{id}")
-  Call<UserData> updateUser(@Header("x-auth-token") String auth, @Body UpdateUserData userData, @Path("id") String id);
+  Call<UserData> updateUser(
+      @Header("x-auth-token") String auth, @Body UpdateUserData userData, @Path("id") String id);
 
   @POST("routines")
   Call<RoutinesData> createRoutine(
@@ -51,10 +48,12 @@ public interface ApiInterface {
   Call<SettingsData> getSettings(@Header("x-auth-token") String auth);
 
   @PUT("settings/{id}")
-  Call<SettingsData> updateHealthSettings(@Header("x-auth-token") String auth, @Body HealthInfo healthInfo, @Path("id") String id);
+  Call<SettingsData> updateHealthSettings(
+      @Header("x-auth-token") String auth, @Body HealthInfo healthInfo, @Path("id") String id);
 
   @PUT("settings/{id}")
-  Call<SettingsData> updateChatSettings(@Header("x-auth-token") String auth, @Body ChatInfo chatInfo, @Path("id") String id);
+  Call<SettingsData> updateChatSettings(
+      @Header("x-auth-token") String auth, @Body ChatInfo chatInfo, @Path("id") String id);
 
   @GET("exercises/type/{type}")
   Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
