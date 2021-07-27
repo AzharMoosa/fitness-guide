@@ -11,6 +11,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_bg">
+    <Button
+      android:id="@+id/add_calories"
+      android:layout_width="244dp"
+      android:layout_height="55dp"
+      android:backgroundTint="@color/blue"
+      android:fontFamily="@font/montserrat_bold"
+      android:text="Add Calories"
+      android:textColor="@color/primary_text"
+      app:cornerRadius="11dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.56" />
+    <TextView
+      android:id="@+id/textView32"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Calorie Count:"
+      android:textColor="@color/primary_text"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.107"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.278" />
+    <TextView
+      android:id="@+id/calorie_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="0"
+      android:textColor="@color/primary_text"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.899"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.277" />
+    <TextView
+      android:id="@+id/textView35"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Date:"
+      android:textColor="@color/primary_text"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.078"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.164" />
+    <TextView
+      android:id="@+id/current_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/primary_text"
+      android:textSize="24sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.871"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.164" />
     <TextView
       android:id="@+id/textView21"
       android:layout_width="wrap_content"
@@ -25,6 +91,23 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintVertical_bias="0.042" />
+    <EditText
+      android:id="@+id/calorie_input"
+      android:layout_width="283dp"
+      android:layout_height="47dp"
+      android:backgroundTint="@color/primary_text"
+      android:ems="10"
+      android:fontFamily="@font/montserrat"
+      android:inputType="numberSigned"
+      android:textColor="@color/primary_text"
+      android:textColorHint="@color/primary_text"
+      android:textSize="20sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.431" />
   </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
