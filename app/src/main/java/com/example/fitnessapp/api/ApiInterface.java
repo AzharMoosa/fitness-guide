@@ -18,6 +18,12 @@ public interface ApiInterface {
   @GET("auth")
   Call<UserData> getUserData(@Header("x-auth-token") String auth);
 
+  @POST("auth")
+  Call<UserData> loginUser(@Body LoginData loginData);
+
+  @POST("users")
+  Call<UserData> registerUser(@Header("x-auth-token") String auth, @Body UserData userData);
+
   @GET("routines")
   Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
 

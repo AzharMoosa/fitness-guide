@@ -17,71 +17,85 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.fitnessapp.Dashboard;
+import com.example.fitnessapp.api.ApiUtilities;
+import com.example.fitnessapp.api.LoginData;
+import com.example.fitnessapp.api.UserData;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Authentication {
 
-  public static void login(String URL, JSONObject data, Context context) {
-    RequestQueue requestQueue = Volley.newRequestQueue(context);
-    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, API_URL + URL,
-        data, response -> {
-      try {
-        String token = response.getString(TOKEN);
-        String id = response.getString("_id");
-        String name = response.getString("name");
-        String email = response.getString("email");
-        context.startActivity(new Intent(context, Dashboard.class));
-        saveToken(token, context);
-        saveID(id, context);
-        saveName(name, context);
-        saveEmail(email, context);
-      } catch (JSONException e) {
-        e.printStackTrace();
-      }
-    }, error -> Toast
-        .makeText(context.getApplicationContext(), "Error: Email Or Password Not Valid",
-            Toast.LENGTH_SHORT)
-        .show()) {
-      public Map<String, String> getParams() {
-        Map<String, String> params = new HashMap<>();
-        params.put("Content-Type", "application/json");
-        return params;
-      }
-    };
-    int socketTimeout = 10000;
-    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-        DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-    objectRequest.setRetryPolicy(policy);
-    requestQueue.add(objectRequest);
+  public static void login(LoginData data, Context context) {
+    ApiUtilities.getApiInterface()
+        .loginUser(data)
+        .enqueue(
+            new Callback<UserData>() {
+              @Override
+              public void onResponse(Call<UserData> call, Response<UserData> response) {
+                if (response.body() != null) {
+                  String token = response.body().getToken();
+                  String id = response.body().getId();
+                  String name = response.body().getName();
+                  String email = response.body().getEmail();
+                  context.startActivity(new Intent(context, Dashboard.class));
+                  saveToken(token, context);
+                  saveID(id, context);
+                  saveName(name, context);
+                  saveEmail(email, context);
+                }
+              }
+
+              @Override
+              public void onFailure(Call<UserData> call, Throwable t) {
+                Toast.makeText(
+                        context.getApplicationContext(),
+                        "Error: Email Or Password Not Valid",
+                        Toast.LENGTH_SHORT)
+                    .show();
+              }
+            });
   }
 
   public static void register(String URL, JSONObject data, Context context) {
     RequestQueue requestQueue = Volley.newRequestQueue(context);
-    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, API_URL + URL,
-        data, response -> {
-      try {
-        String token = response.getString(TOKEN);
-        context.startActivity(new Intent(context, Dashboard.class));
-        saveToken(token, context);
-      } catch (JSONException e) {
-        e.printStackTrace();
-      }
-    }, error -> Toast
-        .makeText(context.getApplicationContext(), "Error: Registration Failed" + error.toString(),
-            Toast.LENGTH_SHORT).show()) {
-      public Map<String, String> getParams() throws AuthFailureError {
-        Map<String, String> params = new HashMap<>();
-        params.put("Content-Type", "application/json");
-        return params;
-      }
-    };
+    JsonObjectRequest objectRequest =
+        new JsonObjectRequest(
+            Request.Method.POST,
+            API_URL + URL,
+            data,
+            response -> {
+              try {
+                String token = response.getString(TOKEN);
+                context.startActivity(new Intent(context, Dashboard.class));
+                saveToken(token, context);
+              } catch (JSONException e) {
+                e.printStackTrace();
+              }
+            },
+            error ->
+                Toast.makeText(
+                        context.getApplicationContext(),
+                        "Error: Registration Failed" + error.toString(),
+                        Toast.LENGTH_SHORT)
+                    .show()) {
+          public Map<String, String> getParams() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("Content-Type", "application/json");
+            return params;
+          }
+        };
 
     int socketTimeout = 10000;
-    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
-        DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+    RetryPolicy policy =
+        new DefaultRetryPolicy(
+            socketTimeout,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
     objectRequest.setRetryPolicy(policy);
     requestQueue.add(objectRequest);
   }

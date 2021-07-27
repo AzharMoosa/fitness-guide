@@ -6,12 +6,22 @@ public class UserData {
   private String name;
   private String email;
   private String dateRegistered;
+  private String token;
 
-  public UserData(String id, String name, String email, String dateRegistered) {
+  public UserData(String id, String name, String email, String dateRegistered, String token) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.dateRegistered = dateRegistered;
+    this.token = token;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
   }
 
   public String getId() {
