@@ -92,44 +92,44 @@ public class Nutrition extends Fragment {
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_nutrition, container, false);
-
+    Context context = getContext();
     TextView currentDate = view.findViewById(R.id.current_date);
     Button addCaloriesBtn = view.findViewById(R.id.add_calories);
     TextView calorieCounter = view.findViewById(R.id.calorie_count);
     EditText caloriesInput = view.findViewById(R.id.calorie_input);
     String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
 
-    if (getDate(getContext()).equals("")) {
-      setDate(date, getContext());
+    if (getDate(context).equals("")) {
+      setDate(date, context);
     }
 
-    if (!date.equals(getDate(getContext()))) {
-      setDate(date, getContext());
-      setDailyCount(0, getContext());
+    if (!date.equals(getDate(context))) {
+      setDate(date, context);
+      setDailyCount(0, context);
     }
 
-    setCalorieCount(getDailyCount(getContext()));
+    setCalorieCount(getDailyCount(context));
     calorieCounter.setText(String.valueOf(getCalorieCount()));
     currentDate.setText(date);
 
+    addCaloriesBtn.setOnClickListener(
+        v -> {
+          if (getCalorieCount() > 50000) {
+            return;
+          }
 
-    addCaloriesBtn.setOnClickListener(v -> {
-      if (getCalorieCount() > 50000) {
-        return;
-      }
+          String input = caloriesInput.getText().toString();
 
-      String input = caloriesInput.getText().toString();
-
-      if (!input.equals("") && input.length() < 5) {
-        int amount = Integer.parseInt(input);
-        setCalorieCount(calorieCount + amount);
-        calorieCounter.setText(String.valueOf(getCalorieCount()));
-        setDailyCount(getCalorieCount(), getContext());
-      } else {
-        // Show Message
-      }
-      caloriesInput.setText("");
-    });
+          if (!input.equals("") && input.length() < 5) {
+            int amount = Integer.parseInt(input);
+            setCalorieCount(calorieCount + amount);
+            calorieCounter.setText(String.valueOf(getCalorieCount()));
+            setDailyCount(getCalorieCount(), context);
+          } else {
+            // Show Message
+          }
+          caloriesInput.setText("");
+        });
 
     return view;
   }
