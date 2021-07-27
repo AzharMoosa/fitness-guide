@@ -9,9 +9,9 @@ import static com.example.fitnessapp.auth.Authentication.saveName;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
@@ -71,7 +71,7 @@ public class UserSettings extends AppCompatActivity {
                 }
                 @Override
                 public void onFailure(Call<UserData> call, Throwable t) {
-                  Log.e("Error", t.getMessage());
+                  Toast.makeText(getApplicationContext(), "Cannot Update User Settings", Toast.LENGTH_SHORT).show();
                 }
               });
     }

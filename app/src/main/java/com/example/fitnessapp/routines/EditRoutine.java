@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -302,7 +303,7 @@ public class EditRoutine extends AppCompatActivity {
 
           @Override
           public void onFailure(Call<RoutinesData> call, Throwable t) {
-
+            Toast.makeText(getApplicationContext(), "Cannot Edit Routine", Toast.LENGTH_SHORT).show();
           }
         });
   }

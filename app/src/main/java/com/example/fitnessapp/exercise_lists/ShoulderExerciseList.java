@@ -1,12 +1,12 @@
 package com.example.fitnessapp.exercise_lists;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.R;
@@ -45,7 +45,7 @@ public class ShoulderExerciseList extends AppCompatActivity {
 
       @Override
       public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
-        Log.e("Error", t.getMessage());
+        Toast.makeText(getApplicationContext(), "Cannot Get Shoulder Exercises", Toast.LENGTH_SHORT).show();
       }
     });
   }

@@ -5,10 +5,10 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
@@ -47,7 +47,7 @@ public class ChatSettings extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<SettingsData> call, Throwable t) {
-                Log.e("Error", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Cannot Get Chat Settings", Toast.LENGTH_SHORT).show();
               }
             });
   }
@@ -83,7 +83,9 @@ public class ChatSettings extends AppCompatActivity {
               }
 
               @Override
-              public void onFailure(Call<SettingsData> call, Throwable t) {}
+              public void onFailure(Call<SettingsData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Update Chat Settings", Toast.LENGTH_SHORT).show();
+              }
             });
   }
 
@@ -106,7 +108,9 @@ public class ChatSettings extends AppCompatActivity {
               }
 
               @Override
-              public void onFailure(Call<SettingsData> call, Throwable t) {}
+              public void onFailure(Call<SettingsData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Update Chat Settings", Toast.LENGTH_SHORT).show();
+              }
             });
   }
 }

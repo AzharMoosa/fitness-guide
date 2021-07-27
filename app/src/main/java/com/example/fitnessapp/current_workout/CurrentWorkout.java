@@ -5,12 +5,12 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -55,7 +55,7 @@ public class CurrentWorkout extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<RoutinesData> call, Throwable t) {
-                Log.e("Error", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Cannot Get Current Workout", Toast.LENGTH_SHORT).show();
               }
             });
   }

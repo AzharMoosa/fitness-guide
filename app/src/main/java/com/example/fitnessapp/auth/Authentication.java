@@ -72,7 +72,7 @@ public class Authentication {
               public void onFailure(Call<UserData> call, Throwable t) {
                 Toast.makeText(
                         context.getApplicationContext(),
-                        "Error: Registration Failed " + t.getMessage(),
+                        "Error: Registration Failed",
                         Toast.LENGTH_SHORT)
                     .show();
               }

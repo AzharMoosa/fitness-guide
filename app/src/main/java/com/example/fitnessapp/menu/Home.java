@@ -9,16 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.R;
+import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.UserData;
+import com.example.fitnessapp.current_workout.CurrentWorkout;
 import com.example.fitnessapp.routines.Routines;
 import com.example.fitnessapp.schedule.WorkoutSchedule;
 import com.example.fitnessapp.settings.HealthInformation;
 import com.example.fitnessapp.settings.UserSettings;
-import com.example.fitnessapp.current_workout.CurrentWorkout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -107,7 +108,9 @@ public class Home extends Fragment {
               }
 
               @Override
-              public void onFailure(Call<UserData> call, Throwable t) {}
+              public void onFailure(Call<UserData> call, Throwable t) {
+                Toast.makeText(getContext(), "Cannot Connect To Server", Toast.LENGTH_SHORT).show();
+              }
             });
     return view;
   }

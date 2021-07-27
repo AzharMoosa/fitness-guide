@@ -93,6 +93,7 @@ public class ChatRoom extends AppCompatActivity {
                 JSONObject jsonData = new JSONObject(jsonString);
                 mSocket.emit("newMessage", jsonData);
               } catch (JSONException e) {
+                Toast.makeText(getApplicationContext(), "Error: Sending Message", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
               }
               message.setText(" ");
@@ -125,7 +126,7 @@ public class ChatRoom extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<SettingsData> call, Throwable t) {
-                Log.e("Error", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Error Connecting To Server", Toast.LENGTH_SHORT).show();
               }
             });
   }
@@ -159,6 +160,7 @@ public class ChatRoom extends AppCompatActivity {
                                   JSONObject jsonData = new JSONObject(jsonString);
                                   mSocket.emit("subscribe", jsonData);
                                 } catch (JSONException e) {
+                                  Toast.makeText(getApplicationContext(), "Cannot Connect To Server", Toast.LENGTH_SHORT).show();
                                   e.printStackTrace();
                                 }
                               }
@@ -209,6 +211,7 @@ public class ChatRoom extends AppCompatActivity {
                     chatRoomAdapter.notifyItemInserted(messageList.size());
                     recyclerView.scrollToPosition(messageList.size() - 1);
                   } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Cannot Connect To Server", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                   }
                 }

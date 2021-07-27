@@ -4,9 +4,9 @@ import static com.example.fitnessapp.auth.Authentication.getToken;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
@@ -45,7 +45,7 @@ public class HealthInformation extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<SettingsData> call, Throwable t) {
-                Log.e("Error", t.getMessage());
+                Toast.makeText(getApplicationContext(), "Cannot Get Health Information", Toast.LENGTH_SHORT).show();
               }
             });
   }
@@ -102,7 +102,9 @@ public class HealthInformation extends AppCompatActivity {
               }
 
               @Override
-              public void onFailure(Call<SettingsData> call, Throwable t) {}
+              public void onFailure(Call<SettingsData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Update Health Information", Toast.LENGTH_SHORT).show();
+              }
             });
   }
 }

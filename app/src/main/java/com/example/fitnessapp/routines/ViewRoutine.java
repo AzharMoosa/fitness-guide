@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -138,7 +139,9 @@ public class ViewRoutine extends AppCompatActivity {
               public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) { startActivity(new Intent(getApplicationContext(), Routines.class));}
 
               @Override
-              public void onFailure(Call<RoutinesData> call, Throwable t) {}
+              public void onFailure(Call<RoutinesData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Set Routine As Active", Toast.LENGTH_SHORT).show();
+              }
             });
   }
 
@@ -157,7 +160,9 @@ public class ViewRoutine extends AppCompatActivity {
               public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {}
 
               @Override
-              public void onFailure(Call<ResponseBody> call, Throwable t) {}
+              public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Delete Routine", Toast.LENGTH_SHORT).show();
+              }
             });
     startActivity(new Intent(ViewRoutine.this, Routines.class));
   }
