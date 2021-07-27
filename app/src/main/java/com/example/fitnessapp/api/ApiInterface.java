@@ -22,7 +22,7 @@ public interface ApiInterface {
   Call<UserData> loginUser(@Body LoginData loginData);
 
   @POST("users")
-  Call<UserData> registerUser(@Header("x-auth-token") String auth, @Body UserData userData);
+  Call<UserData> registerUser(@Body RegisterData registerData);
 
   @GET("routines")
   Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);

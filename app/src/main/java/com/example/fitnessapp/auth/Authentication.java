@@ -1,6 +1,5 @@
 package com.example.fitnessapp.auth;
 
-import static com.example.fitnessapp.constants.Constants.API_URL;
 import static com.example.fitnessapp.constants.Constants.ID;
 import static com.example.fitnessapp.constants.Constants.TOKEN;
 
@@ -9,21 +8,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.RetryPolicy;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.api.ApiUtilities;
 import com.example.fitnessapp.api.LoginData;
+import com.example.fitnessapp.api.RegisterData;
 import com.example.fitnessapp.api.UserData;
-import java.util.HashMap;
-import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,43 +50,33 @@ public class Authentication {
             });
   }
 
-  public static void register(String URL, JSONObject data, Context context) {
-    RequestQueue requestQueue = Volley.newRequestQueue(context);
-    JsonObjectRequest objectRequest =
-        new JsonObjectRequest(
-            Request.Method.POST,
-            API_URL + URL,
-            data,
-            response -> {
-              try {
-                String token = response.getString(TOKEN);
+  public static void register(RegisterData data, Context context) {
+    ApiUtilities.getApiInterface()
+        .registerUser(data)
+        .enqueue(
+            new Callback<UserData>() {
+              @Override
+              public void onResponse(Call<UserData> call, Response<UserData> response) {
+                String token = response.body().getToken();
+                String id = response.body().getId();
+                String name = response.body().getName();
+                String email = response.body().getEmail();
                 context.startActivity(new Intent(context, Dashboard.class));
                 saveToken(token, context);
-              } catch (JSONException e) {
-                e.printStackTrace();
+                saveID(id, context);
+                saveName(name, context);
+                saveEmail(email, context);
               }
-            },
-            error ->
+
+              @Override
+              public void onFailure(Call<UserData> call, Throwable t) {
                 Toast.makeText(
                         context.getApplicationContext(),
-                        "Error: Registration Failed" + error.toString(),
+                        "Error: Registration Failed " + t.getMessage(),
                         Toast.LENGTH_SHORT)
-                    .show()) {
-          public Map<String, String> getParams() throws AuthFailureError {
-            Map<String, String> params = new HashMap<>();
-            params.put("Content-Type", "application/json");
-            return params;
-          }
-        };
-
-    int socketTimeout = 10000;
-    RetryPolicy policy =
-        new DefaultRetryPolicy(
-            socketTimeout,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-    objectRequest.setRetryPolicy(policy);
-    requestQueue.add(objectRequest);
+                    .show();
+              }
+            });
   }
 
   public static String getToken(Context context) {

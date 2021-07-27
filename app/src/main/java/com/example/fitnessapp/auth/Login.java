@@ -1,8 +1,6 @@
 package com.example.fitnessapp.auth;
 
 import static com.example.fitnessapp.auth.Authentication.login;
-import static com.example.fitnessapp.constants.Constants.EMAIL;
-import static com.example.fitnessapp.constants.Constants.PASSWORD;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +9,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.LoginData;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
@@ -35,15 +31,12 @@ public class Login extends AppCompatActivity {
     startActivity(new Intent(Login.this, SignUp.class));
   }
 
-  public void loginUser(View v) throws JSONException {
+  public void loginUser(View v) {
     // Retrieve Input
     String userEmail = email.getText().toString();
     String userPassword = password.getText().toString();
 
     // Login User
-    JSONObject data = new JSONObject();
-    data.put(EMAIL, userEmail);
-    data.put(PASSWORD, userPassword);
     LoginData loginData = new LoginData(userEmail, userPassword);
     login(loginData, this);
   }
