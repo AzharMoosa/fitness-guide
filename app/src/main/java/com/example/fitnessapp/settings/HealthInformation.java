@@ -2,6 +2,7 @@ package com.example.fitnessapp.settings;
 
 import static com.example.fitnessapp.auth.Authentication.getToken;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,15 @@ public class HealthInformation extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_health_information);
+    dobInput = findViewById(R.id.dob);
+    genderInput = findViewById(R.id.gender);
+    heightInput = findViewById(R.id.height);
+    weightInput = findViewById(R.id.weight);
+    getHealthSettings();
+  }
+
+  // Gets Health Settings
+  private void getHealthSettings() {
     ApiUtilities.getApiInterface()
         .getSettings(getToken(this))
         .enqueue(
@@ -45,21 +55,18 @@ public class HealthInformation extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<SettingsData> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Cannot Get Health Information", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Cannot Get Health Information",
+                        Toast.LENGTH_SHORT)
+                    .show();
               }
             });
   }
 
-  public void backBtn(View v) {
-    startActivity(new Intent(this, Dashboard.class));
-  }
-
+  // Sets Inputs
+  @SuppressLint("SetTextI18n")
   private void setInputs() {
-    dobInput = findViewById(R.id.dob);
-    genderInput = findViewById(R.id.gender);
-    heightInput = findViewById(R.id.height);
-    weightInput = findViewById(R.id.weight);
-
     dobInput.setText(info.getDateOfBirth());
     genderInput.setText(info.getGender());
     if (info.getHeight() != 0) {
@@ -70,6 +77,7 @@ public class HealthInformation extends AppCompatActivity {
     }
   }
 
+  // Updates Health Settings
   public void updateInfo(View v) {
     HealthInfo updatedInfo = new HealthInfo();
     updatedInfo.setDateOfBirth(dobInput.getText().toString());
@@ -77,34 +85,40 @@ public class HealthInformation extends AppCompatActivity {
     if (!heightInput.getText().toString().equals("")) {
       updatedInfo.setHeight(Integer.parseInt(heightInput.getText().toString()));
     }
-
     if (!weightInput.getText().toString().equals("")) {
       updatedInfo.setWeight(Integer.parseInt(weightInput.getText().toString()));
     }
+    updateSettings(updatedInfo);
+  }
 
+  // Updates Settings
+  private void updateSettings(HealthInfo updatedInfo) {
     ApiUtilities.getApiInterface()
         .updateHealthSettings(getToken(this), updatedInfo, settingsID)
         .enqueue(
             new Callback<SettingsData>() {
+              @SuppressLint("SetTextI18n")
               @Override
               public void onResponse(Call<SettingsData> call, Response<SettingsData> response) {
                 if (response.body() != null) {
                   info = response.body().getHealthInformation();
-                  dobInput.setText(info.getDateOfBirth());
-                  genderInput.setText(info.getGender());
-                  if (info.getHeight() != 0) {
-                    heightInput.setText(info.getHeight().toString());
-                  }
-                  if (info.getWeight() != 0) {
-                    weightInput.setText(info.getWeight().toString());
-                  }
+                  setInputs();
                 }
               }
 
               @Override
               public void onFailure(Call<SettingsData> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Cannot Update Health Information", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                    getApplicationContext(),
+                    "Cannot Update Health Information",
+                    Toast.LENGTH_SHORT)
+                    .show();
               }
             });
+  }
+
+
+  public void backBtn(View v) {
+    startActivity(new Intent(this, Dashboard.class));
   }
 }

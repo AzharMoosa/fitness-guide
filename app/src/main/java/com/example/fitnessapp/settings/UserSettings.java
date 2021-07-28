@@ -39,41 +39,51 @@ public class UserSettings extends AppCompatActivity {
     emailInput.setText(getUserEmail(this));
   }
 
-  public void backBtn(View v) {
-    startActivity(new Intent(this, Dashboard.class));
-  }
-
+  // Update User Settings
   public void updateUser(View v) {
     password = findViewById(R.id.password_input);
     confirmPassword = findViewById(R.id.confirm_password_input);
+    // Check If Passwords Match
     if (password.getText().toString().equals(confirmPassword.getText().toString())) {
       UpdateUserData updatedUserData =
           new UpdateUserData(
               nameInput.getText().toString(),
               emailInput.getText().toString(),
               password.getText().toString());
-      ApiUtilities.getApiInterface()
-          .updateUser(getToken(this), updatedUserData, getUserID(this))
-          .enqueue(
-              new Callback<UserData>() {
-                @Override
-                public void onResponse(Call<UserData> call, Response<UserData> response) {
-                  if (response.body() != null) {
-                    String name = response.body().getName();
-                    String email = response.body().getEmail();
-                    nameInput.setText(name);
-                    emailInput.setText(email);
-                    password.setText("");
-                    confirmPassword.setText("");
-                    saveName(name, getApplicationContext());
-                    saveEmail(email, getApplicationContext());
-                  }
-                }
-                @Override
-                public void onFailure(Call<UserData> call, Throwable t) {
-                  Toast.makeText(getApplicationContext(), "Cannot Update User Settings", Toast.LENGTH_SHORT).show();
-                }
-              });
+      updateSettings(updatedUserData);
     }
+  }
+
+  // Update Settings
+  private void updateSettings(UpdateUserData updatedUserData) {
+    ApiUtilities.getApiInterface()
+        .updateUser(getToken(this), updatedUserData, getUserID(this))
+        .enqueue(
+            new Callback<UserData>() {
+              @Override
+              public void onResponse(Call<UserData> call, Response<UserData> response) {
+                if (response.body() != null) {
+                  String name = response.body().getName();
+                  String email = response.body().getEmail();
+                  nameInput.setText(name);
+                  emailInput.setText(email);
+                  password.setText("");
+                  confirmPassword.setText("");
+                  saveName(name, getApplicationContext());
+                  saveEmail(email, getApplicationContext());
+                }
+              }
+
+              @Override
+              public void onFailure(Call<UserData> call, Throwable t) {
+                Toast.makeText(
+                        getApplicationContext(), "Cannot Update User Settings", Toast.LENGTH_SHORT)
+                    .show();
+              }
+            });
+  }
+
+  public void backBtn(View v) {
+    startActivity(new Intent(this, Dashboard.class));
   }
 }
