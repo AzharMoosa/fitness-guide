@@ -28,6 +28,7 @@ public class Dashboard extends AppCompatActivity {
     navigationView.setOnNavigationItemSelectedListener(navListener);
   }
 
+  // Bottom Navbar
   private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
       new OnNavigationItemSelectedListener() {
         @SuppressLint("NonConstantResourceId")
@@ -60,6 +61,7 @@ public class Dashboard extends AppCompatActivity {
         }
       };
 
+  // Disable Back Button
   @Override
   public void onBackPressed() {}
 
