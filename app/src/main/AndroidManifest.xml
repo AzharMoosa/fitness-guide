@@ -10,7 +10,8 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".exercise_lists.ExerciseList"></activity>
+    <activity android:name=".exercise_lists.ExerciseInfo"></activity>
+    <activity android:name=".exercise_lists.ExerciseList" />
     <activity android:name=".current_workout.CurrentWorkout" />
     <activity android:name=".schedule.WorkoutSchedule" />
     <activity
@@ -39,8 +40,8 @@
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
   </application>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
   <uses-permission android:name="android.permission.INTERNET" />
+
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

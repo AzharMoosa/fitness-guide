@@ -1,5 +1,6 @@
 package com.example.fitnessapp.exercise_lists;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -71,6 +72,17 @@ public class ExerciseList extends AppCompatActivity {
     exerciseName.setText(routine.getName());
     exerciseName.setTextSize(25);
     exerciseName.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+
+    exerciseName.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            Intent intent = new Intent(ExerciseList.this, ExerciseInfo.class);
+            intent.putExtra("exerciseName", routine.getName());
+            intent.putExtra("exerciseDesc", routine.getDescription());
+            startActivity(intent);
+          }
+        });
+
     row.addView(exerciseName);
     return row;
   }
