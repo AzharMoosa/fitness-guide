@@ -9,6 +9,7 @@ import static com.example.fitnessapp.constants.Constants.THURSDAY;
 import static com.example.fitnessapp.constants.Constants.TUESDAY;
 import static com.example.fitnessapp.constants.Constants.WEDNESDAY;
 
+import android.annotation.SuppressLint;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,11 @@ public class WorkoutSchedule extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_workout_schedule);
+    getWorkoutSchedule();
+  }
+
+  // Gets Workout Schedule
+  private void getWorkoutSchedule() {
     ApiUtilities.getApiInterface()
         .getActiveRoutine(getToken(this))
         .enqueue(
@@ -122,6 +128,7 @@ public class WorkoutSchedule extends AppCompatActivity {
     return row;
   }
 
+  @SuppressLint("UseCompatLoadingForDrawables")
   private TableRow createRow(String text) {
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
