@@ -44,9 +44,7 @@ public class CreateRoutine extends AppCompatActivity {
   private LinearLayout createRoutineList;
   private final List<Exercise> exercises = new ArrayList<>();
   private final List<Session> sessions = new ArrayList<>();
-  private final List<String> sessionID = new ArrayList<>();
   private final String[] days = {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY};
-  private int dayCount = 0;
 
   @RequiresApi(api = VERSION_CODES.N)
   @Override
@@ -57,6 +55,7 @@ public class CreateRoutine extends AppCompatActivity {
     refreshExerciseList();
   }
 
+  // Initialise Routines
   private void initRoutines() {
     for (String day : days) {
       Exercise exercise = new Exercise(day);
@@ -64,6 +63,7 @@ public class CreateRoutine extends AppCompatActivity {
     }
   }
 
+  // Refresh Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void refreshExerciseList() {
     createRoutineList = findViewById(R.id.create_routine_list);
@@ -73,6 +73,7 @@ public class CreateRoutine extends AppCompatActivity {
     }
   }
 
+  // Displays Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void displayExerciseList(String day) {
     List<Exercise> dayExercises =
@@ -90,6 +91,7 @@ public class CreateRoutine extends AppCompatActivity {
     createRoutineList.addView(createBtn(day));
   }
 
+  // Generates Table Row
   private TableRow generateRow(String text, boolean day) {
     if (day) {
       return createRow(text);
@@ -97,23 +99,27 @@ public class CreateRoutine extends AppCompatActivity {
     return createExerciseRow(text);
   }
 
-  public void backBtn(View v) {
-    this.finish();
-  }
-
+  // Creates Add Exercise Button
   private TableRow createBtn(String day) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(100, 0, 100, 20);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText("Add Exercise");
     row.setGravity(Gravity.CENTER_VERTICAL);
     textView.setTextSize(15);
     textView.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+
+    // Generates Button
     ImageButton btn = new ImageButton(getApplicationContext());
     btn.setImageResource(R.drawable.add_exercise);
     btn.setBackground(null);
+
+    // Set Popup Dialog
     btn.setOnClickListener(
         new OnClickListener() {
           @Override
@@ -190,11 +196,15 @@ public class CreateRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Creates Row For Each Exercise
   private TableRow createExerciseRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(20);
@@ -204,11 +214,15 @@ public class CreateRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Creates Table Row
   private TableRow createRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(25);
@@ -219,6 +233,7 @@ public class CreateRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Creates Routine
   @RequiresApi(api = VERSION_CODES.N)
   public void createRoutine(View v) {
     for (String day : days) {
@@ -232,8 +247,7 @@ public class CreateRoutine extends AppCompatActivity {
     LinearLayout layout = new LinearLayout(CreateRoutine.this);
     layout.setOrientation(LinearLayout.VERTICAL);
 
-    LayoutParams params =
-        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+    LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(30, 10, 30, 10);
 
     final EditText nameInput = new EditText(CreateRoutine.this);
@@ -277,30 +291,39 @@ public class CreateRoutine extends AppCompatActivity {
     builder.show();
   }
 
+  // Creates Routine Using API
   @RequiresApi(api = VERSION_CODES.N)
   private void apiCreateRoutine(Routine routine) {
-    final RoutinesData routinesData = new RoutinesData(routine.getName(), routine.isActive(), sessions);
+    final RoutinesData routinesData =
+        new RoutinesData(routine.getName(), routine.isActive(), sessions);
     ApiUtilities.getApiInterface()
         .createRoutine(getToken(this), routinesData)
-        .enqueue(new Callback<RoutinesData>() {
-          @Override
-          public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
-            // Finish Activity
-            startActivity(new Intent(CreateRoutine.this, Routines.class));
-          }
+        .enqueue(
+            new Callback<RoutinesData>() {
+              @Override
+              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
+                // Finish Activity
+                startActivity(new Intent(CreateRoutine.this, Routines.class));
+              }
 
-          @Override
-          public void onFailure(Call<RoutinesData> call, Throwable t) {
-            Toast.makeText(getApplicationContext(), "Error: Routine Cannot Be Created", Toast.LENGTH_SHORT).show();
-          }
-        });
+              @Override
+              public void onFailure(Call<RoutinesData> call, Throwable t) {
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Error: Routine Cannot Be Created",
+                        Toast.LENGTH_SHORT)
+                    .show();
+              }
+            });
   }
 
+  // Check If Routine Is Set Active
   private boolean isCurrent() {
     CheckBox checkBox = findViewById(R.id.current_active);
     return checkBox.isChecked();
   }
 
+  // Create Session
   @RequiresApi(api = VERSION_CODES.N)
   private void createSession(String day) {
     List<Exercise> dayExercises =
@@ -310,5 +333,9 @@ public class CreateRoutine extends AppCompatActivity {
             .collect(Collectors.toList());
     Session session = new Session(day, dayExercises);
     sessions.add(session);
+  }
+
+  public void backBtn(View v) {
+    this.finish();
   }
 }

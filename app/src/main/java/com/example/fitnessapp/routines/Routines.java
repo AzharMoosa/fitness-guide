@@ -38,6 +38,11 @@ public class Routines extends AppCompatActivity {
     routineUI = findViewById(R.id.routines_ui);
     routinesList = findViewById(R.id.routines_list);
     routineUI.setVisibility(View.INVISIBLE);
+    getRoutines();
+  }
+
+  // Gets Routines
+  private void getRoutines() {
     ApiUtilities.getApiInterface()
         .getRoutinesData(getToken(this))
         .enqueue(
@@ -57,24 +62,26 @@ public class Routines extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<List<RoutinesData>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Cannot Get Routines", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Cannot Get Routines", Toast.LENGTH_SHORT)
+                    .show();
               }
             });
   }
 
-  public void backBtn(View v) {
-    startActivity(new Intent(this, Dashboard.class));
-  }
-
+  // Go To Create Routine
   public void createRoutine(View v) {
     startActivity(new Intent(this, CreateRoutine.class));
   }
 
+  // Creates Table Row
   private TableRow createRow(RoutinesData routine) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(0, 0, 0, 100);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView routineName = new TextView(getApplicationContext());
     routineName.setText(routine.getName());
     routineName.setTextSize(25);
@@ -83,18 +90,26 @@ public class Routines extends AppCompatActivity {
     } else {
       routineName.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
     }
-    routineName.setOnClickListener(new View.OnClickListener() {
-      public void onClick(View v) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Routines.this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("current_routine", routine.getId());
-        editor.apply();
-        Intent intent = new Intent(Routines.this,ViewRoutine.class);
-        intent.putExtra("routineData", routine);
-        startActivity(intent);
-      }
-    });
+
+    // Sets On Click Listener
+    routineName.setOnClickListener(
+        new View.OnClickListener() {
+          public void onClick(View v) {
+            SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(Routines.this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("current_routine", routine.getId());
+            editor.apply();
+            Intent intent = new Intent(Routines.this, ViewRoutine.class);
+            intent.putExtra("routineData", routine);
+            startActivity(intent);
+          }
+        });
     row.addView(routineName);
     return row;
+  }
+
+  public void backBtn(View v) {
+    startActivity(new Intent(this, Dashboard.class));
   }
 }

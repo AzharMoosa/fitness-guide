@@ -59,16 +59,14 @@ public class EditRoutine extends AppCompatActivity {
     initRoutines();
   }
 
-  public void backBtn(View v) {
-    startActivity(new Intent(this, Routines.class));
-  }
-
+  // Initialise Routines
   @RequiresApi(api = VERSION_CODES.N)
   private void initRoutines() {
     sessions.addAll(currentRoutine.getRoutines());
     addExercises();
   }
 
+  // Add Exercises
   @RequiresApi(api = VERSION_CODES.N)
   private void addExercises() {
     for (Session session : sessions) {
@@ -77,6 +75,7 @@ public class EditRoutine extends AppCompatActivity {
     refreshExerciseList();
   }
 
+  // Refresh Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void refreshExerciseList() {
     viewRoutineList = findViewById(R.id.edit_routine_list);
@@ -86,6 +85,7 @@ public class EditRoutine extends AppCompatActivity {
     }
   }
 
+  // Displays Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void displayExerciseList(String day) {
     List<Exercise> dayExercises =
@@ -103,6 +103,7 @@ public class EditRoutine extends AppCompatActivity {
     viewRoutineList.addView(createBtn(day));
   }
 
+  // Generates Table Row
   private TableRow generateRow(String text, boolean day) {
     if (day) {
       return createRow(text);
@@ -110,19 +111,27 @@ public class EditRoutine extends AppCompatActivity {
     return createExerciseRow(text);
   }
 
+  // Creates Add Exercise Button
   private TableRow createBtn(String day) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(100, 0, 100, 20);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText("Add Exercise");
     row.setGravity(Gravity.CENTER_VERTICAL);
     textView.setTextSize(15);
     textView.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
+
+    // Generates Button
     ImageButton btn = new ImageButton(getApplicationContext());
     btn.setImageResource(R.drawable.add_exercise);
     btn.setBackground(null);
+
+    // Set Popup Dialog
     btn.setOnClickListener(
         new OnClickListener() {
           @Override
@@ -199,12 +208,15 @@ public class EditRoutine extends AppCompatActivity {
     return row;
   }
 
-
+  // Creates Row For Each Exercise
   private TableRow createExerciseRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(20);
@@ -214,11 +226,15 @@ public class EditRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Creates Table Row
   private TableRow createRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(25);
@@ -229,6 +245,7 @@ public class EditRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Edit Routine
   @RequiresApi(api = VERSION_CODES.N)
   public void editRoutine(View v) {
     sessions.clear();
@@ -243,8 +260,7 @@ public class EditRoutine extends AppCompatActivity {
     LinearLayout layout = new LinearLayout(EditRoutine.this);
     layout.setOrientation(LinearLayout.VERTICAL);
 
-    LayoutParams params =
-        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+    LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(30, 10, 30, 10);
 
     final EditText nameInput = new EditText(EditRoutine.this);
@@ -289,30 +305,36 @@ public class EditRoutine extends AppCompatActivity {
     builder.show();
   }
 
+  // Edits Routine Using API
   @RequiresApi(api = VERSION_CODES.N)
   private void apiEditRoutine(Routine routine) {
-    final RoutinesData routinesData = new RoutinesData(routine.getName(), routine.isActive(), sessions);
+    final RoutinesData routinesData =
+        new RoutinesData(routine.getName(), routine.isActive(), sessions);
     ApiUtilities.getApiInterface()
         .updateRoutine(getToken(this), routinesData, currentRoutine.getId())
-        .enqueue(new Callback<RoutinesData>() {
-          @Override
-          public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
-            // Finish Activity
-            startActivity(new Intent(EditRoutine.this, Routines.class));
-          }
+        .enqueue(
+            new Callback<RoutinesData>() {
+              @Override
+              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
+                // Finish Activity
+                startActivity(new Intent(EditRoutine.this, Routines.class));
+              }
 
-          @Override
-          public void onFailure(Call<RoutinesData> call, Throwable t) {
-            Toast.makeText(getApplicationContext(), "Cannot Edit Routine", Toast.LENGTH_SHORT).show();
-          }
-        });
+              @Override
+              public void onFailure(Call<RoutinesData> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Cannot Edit Routine", Toast.LENGTH_SHORT)
+                    .show();
+              }
+            });
   }
 
+  // Check If Routine Is Set Active
   private boolean isCurrent() {
     CheckBox checkBox = findViewById(R.id.current_active2);
     return checkBox.isChecked();
   }
 
+  // Create Session
   @RequiresApi(api = VERSION_CODES.N)
   private void createSession(String day) {
     List<Exercise> dayExercises =
@@ -322,5 +344,9 @@ public class EditRoutine extends AppCompatActivity {
             .collect(Collectors.toList());
     Session session = new Session(day, dayExercises);
     sessions.add(session);
+  }
+
+  public void backBtn(View v) {
+    startActivity(new Intent(this, Routines.class));
   }
 }

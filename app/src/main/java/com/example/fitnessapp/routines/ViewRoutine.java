@@ -49,12 +49,14 @@ public class ViewRoutine extends AppCompatActivity {
     initRoutines();
   }
 
+  // Initialise Routines
   @RequiresApi(api = VERSION_CODES.N)
   private void initRoutines() {
     sessions.addAll(currentRoutine.getRoutines());
     addExercises();
   }
 
+  // Adds Exercises
   @RequiresApi(api = VERSION_CODES.N)
   private void addExercises() {
     for (Session session : sessions) {
@@ -63,6 +65,7 @@ public class ViewRoutine extends AppCompatActivity {
     refreshExerciseList();
   }
 
+  // Refresh Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void refreshExerciseList() {
     viewRoutineList = findViewById(R.id.view_routine_list);
@@ -72,6 +75,7 @@ public class ViewRoutine extends AppCompatActivity {
     }
   }
 
+  // Displays Exercise List
   @RequiresApi(api = VERSION_CODES.N)
   private void displayExerciseList(String day) {
     List<Exercise> dayExercises =
@@ -88,6 +92,7 @@ public class ViewRoutine extends AppCompatActivity {
     }
   }
 
+  // Generates Table Row
   private TableRow generateRow(String text, boolean day) {
     if (day) {
       return createRow(text);
@@ -95,11 +100,15 @@ public class ViewRoutine extends AppCompatActivity {
     return createExerciseRow(text);
   }
 
+  // Creates Row For Each Exercise
   private TableRow createExerciseRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(20);
@@ -109,11 +118,15 @@ public class ViewRoutine extends AppCompatActivity {
     return row;
   }
 
+  // Creates Table Row
   private TableRow createRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(150, 0, 150, 30);
     row.setLayoutParams(params);
+
+    // Generates Label Text
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(25);
@@ -124,10 +137,7 @@ public class ViewRoutine extends AppCompatActivity {
     return row;
   }
 
-  public void backBtn(View v) {
-    startActivity(new Intent(this, Routines.class));
-  }
-
+  // Sets Current Routine As Active
   public void setActive(View v) {
     final RoutinesData routinesData =
         new RoutinesData(currentRoutine.getName(), true, currentRoutine.getRoutines());
@@ -136,21 +146,27 @@ public class ViewRoutine extends AppCompatActivity {
         .enqueue(
             new Callback<RoutinesData>() {
               @Override
-              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) { startActivity(new Intent(getApplicationContext(), Routines.class));}
+              public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
+                startActivity(new Intent(getApplicationContext(), Routines.class));
+              }
 
               @Override
               public void onFailure(Call<RoutinesData> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Cannot Set Routine As Active", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        getApplicationContext(), "Cannot Set Routine As Active", Toast.LENGTH_SHORT)
+                    .show();
               }
             });
   }
 
+  // Go To Edit Routine Screen
   public void editRoutine(View v) {
     Intent intent = new Intent(this, EditRoutine.class);
     intent.putExtra("routineData", getIntent().getSerializableExtra("routineData"));
     startActivity(intent);
   }
 
+  // Deletes Routine
   public void deleteRoutine(View v) {
     ApiUtilities.getApiInterface()
         .deleteRoutine(getToken(this), currentRoutine.getId())
@@ -161,9 +177,14 @@ public class ViewRoutine extends AppCompatActivity {
 
               @Override
               public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Cannot Delete Routine", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Cannot Delete Routine", Toast.LENGTH_SHORT)
+                    .show();
               }
             });
     startActivity(new Intent(ViewRoutine.this, Routines.class));
+  }
+
+  public void backBtn(View v) {
+    startActivity(new Intent(this, Routines.class));
   }
 }
