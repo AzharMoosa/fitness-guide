@@ -12,49 +12,63 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
-  static final String BASE_URL = "https://fitness-application-api.herokuapp.com/api/";
+  // API URL
+  String BASE_URL = "https://fitness-application-api.herokuapp.com/api/";
 
+  // Gets User Data
   @GET("auth")
   Call<UserData> getUserData(@Header("x-auth-token") String auth);
 
+  // Login User
   @POST("auth")
   Call<UserData> loginUser(@Body LoginData loginData);
 
+  // Register User
   @POST("users")
   Call<UserData> registerUser(@Body RegisterData registerData);
 
-  @GET("routines")
-  Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
-
-  @GET("routines/active")
-  Call<RoutinesData> getActiveRoutine(@Header("x-auth-token") String auth);
-
-  @DELETE("routines/{id}")
-  Call<ResponseBody> deleteRoutine(@Header("x-auth-token") String auth, @Path("id") String id);
-
-  @PUT("routines/{id}")
-  Call<RoutinesData> updateRoutine(
-      @Header("x-auth-token") String auth, @Body RoutinesData routineData, @Path("id") String id);
-
+  // Updates User
   @PUT("users/{id}")
   Call<UserData> updateUser(
       @Header("x-auth-token") String auth, @Body UpdateUserData userData, @Path("id") String id);
 
+  // Gets Routine Data
+  @GET("routines")
+  Call<List<RoutinesData>> getRoutinesData(@Header("x-auth-token") String auth);
+
+  // Gets Active Routine
+  @GET("routines/active")
+  Call<RoutinesData> getActiveRoutine(@Header("x-auth-token") String auth);
+
+  // Creates Routine
   @POST("routines")
   Call<RoutinesData> createRoutine(
       @Header("x-auth-token") String auth, @Body RoutinesData routineData);
 
+  // Updates Routine
+  @PUT("routines/{id}")
+  Call<RoutinesData> updateRoutine(
+      @Header("x-auth-token") String auth, @Body RoutinesData routineData, @Path("id") String id);
+
+  // Deletes Routine
+  @DELETE("routines/{id}")
+  Call<ResponseBody> deleteRoutine(@Header("x-auth-token") String auth, @Path("id") String id);
+
+  // Gets Exercises By Type
+  @GET("exercises/type/{type}")
+  Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
+
+  // Gets User Settings
   @GET("settings")
   Call<SettingsData> getSettings(@Header("x-auth-token") String auth);
 
+  // Updates Health Settings
   @PUT("settings/{id}")
   Call<SettingsData> updateHealthSettings(
       @Header("x-auth-token") String auth, @Body HealthInfo healthInfo, @Path("id") String id);
 
+  // Updates Chat Settings
   @PUT("settings/{id}")
   Call<SettingsData> updateChatSettings(
       @Header("x-auth-token") String auth, @Body ChatInfo chatInfo, @Path("id") String id);
-
-  @GET("exercises/type/{type}")
-  Call<List<ExerciseData>> getExercisesByType(@Path("type") String type);
 }
