@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.RoutinesData;
+import com.example.fitnessapp.api.routines_data.RoutinesData;
 import com.example.fitnessapp.routines.Exercise;
 import com.example.fitnessapp.routines.Session;
 import java.util.ArrayList;

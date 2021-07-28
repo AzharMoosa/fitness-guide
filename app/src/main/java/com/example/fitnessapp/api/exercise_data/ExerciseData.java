@@ -1,4 +1,4 @@
-package com.example.fitnessapp.api;
+package com.example.fitnessapp.api.exercise_data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

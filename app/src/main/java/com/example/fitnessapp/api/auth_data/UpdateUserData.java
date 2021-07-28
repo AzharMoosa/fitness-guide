@@ -1,12 +1,12 @@
-package com.example.fitnessapp.api;
+package com.example.fitnessapp.api.auth_data;
 
-public class RegisterData {
+public class UpdateUserData {
 
   private String name;
   private String email;
   private String password;
 
-  public RegisterData(String name, String email, String password) {
+  public UpdateUserData(String name, String email, String password) {
     this.name = name;
     this.email = email;
     this.password = password;

@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.R;
-import com.example.fitnessapp.api.RegisterData;
+import com.example.fitnessapp.api.auth_data.RegisterData;
 
 public class SignUp extends AppCompatActivity {
 

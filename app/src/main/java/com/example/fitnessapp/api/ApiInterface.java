@@ -1,5 +1,14 @@
 package com.example.fitnessapp.api;
 
+import com.example.fitnessapp.api.auth_data.LoginData;
+import com.example.fitnessapp.api.auth_data.RegisterData;
+import com.example.fitnessapp.api.auth_data.UpdateUserData;
+import com.example.fitnessapp.api.auth_data.UserData;
+import com.example.fitnessapp.api.exercise_data.ExerciseData;
+import com.example.fitnessapp.api.routines_data.RoutinesData;
+import com.example.fitnessapp.api.settings_data.ChatInfo;
+import com.example.fitnessapp.api.settings_data.HealthInfo;
+import com.example.fitnessapp.api.settings_data.SettingsData;
 import java.util.List;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.Dashboard;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.RoutinesData;
+import com.example.fitnessapp.api.routines_data.RoutinesData;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;

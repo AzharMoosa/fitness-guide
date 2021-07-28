@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.UserData;
+import com.example.fitnessapp.api.auth_data.UserData;
 import com.example.fitnessapp.auth.Login;
 import com.example.fitnessapp.auth.SignUp;
 import retrofit2.Call;

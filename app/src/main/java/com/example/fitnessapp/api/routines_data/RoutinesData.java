@@ -1,4 +1,4 @@
-package com.example.fitnessapp.api;
+package com.example.fitnessapp.api.routines_data;
 
 import com.example.fitnessapp.routines.Session;
 import com.google.gson.annotations.Expose;

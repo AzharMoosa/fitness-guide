@@ -31,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.RoutinesData;
+import com.example.fitnessapp.api.routines_data.RoutinesData;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

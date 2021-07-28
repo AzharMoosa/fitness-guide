@@ -1,4 +1,4 @@
-package com.example.fitnessapp.api;
+package com.example.fitnessapp.api.auth_data;
 
 public class UserData {
 

@@ -14,7 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.example.fitnessapp.R;
 import com.example.fitnessapp.api.ApiUtilities;
-import com.example.fitnessapp.api.UserData;
+import com.example.fitnessapp.api.auth_data.UserData;
 import com.example.fitnessapp.current_workout.CurrentWorkout;
 import com.example.fitnessapp.routines.Routines;
 import com.example.fitnessapp.schedule.WorkoutSchedule;

@@ -1,6 +1,6 @@
 package com.example.fitnessapp.menu;
 
-import static com.example.fitnessapp.auth.Authentication.clearToken;
+import static com.example.fitnessapp.auth.Authentication.signOut;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -74,7 +74,7 @@ public class Settings extends Fragment {
 
     signOutBtn.setOnClickListener(
         v -> {
-          clearToken(getContext());
+          signOut(getContext());
           startActivity(new Intent(v.getContext(), MainActivity.class));
         });
 

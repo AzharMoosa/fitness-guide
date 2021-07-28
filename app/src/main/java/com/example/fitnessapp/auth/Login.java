@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitnessapp.R;
-import com.example.fitnessapp.api.LoginData;
+import com.example.fitnessapp.api.auth_data.LoginData;
 
 public class Login extends AppCompatActivity {
 
