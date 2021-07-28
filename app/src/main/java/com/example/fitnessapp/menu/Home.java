@@ -26,50 +26,37 @@ import retrofit2.Response;
 
 public class Home extends Fragment {
 
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
-
-  private String mParam1;
-  private String mParam2;
   private TextView nameLabel;
   private ConstraintLayout homeUI;
   private ConstraintLayout spinner;
 
   public Home() {}
 
-  public static Home newInstance(String param1, String param2) {
-    Home fragment = new Home();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      mParam1 = getArguments().getString(ARG_PARAM1);
-      mParam2 = getArguments().getString(ARG_PARAM2);
-    }
   }
 
   @Override
   public View onCreateView(
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
+    // Create View
     View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+    // Gets UI & Spinner
     nameLabel = view.findViewById(R.id.user_text);
     homeUI = view.findViewById(R.id.home_ui);
     homeUI.setVisibility(View.INVISIBLE);
     spinner = view.findViewById(R.id.spinner_routines);
+
+    // Gets Buttons
     ImageButton routinesButton = view.findViewById(R.id.routines_btn);
     ImageButton scheduleButton = view.findViewById(R.id.schedule_btn);
     ImageButton workoutLogButton = view.findViewById(R.id.workout_log_btn);
     ImageButton healthInfoButton = view.findViewById(R.id.health_information_btn);
     ImageButton userInfoButton = view.findViewById(R.id.user_info_btn);
 
+    // Sets Button On Click Listener
     routinesButton.setOnClickListener(
         v -> startActivity(new Intent(v.getContext(), Routines.class)));
     scheduleButton.setOnClickListener(
@@ -81,6 +68,7 @@ public class Home extends Fragment {
     userInfoButton.setOnClickListener(
         v -> startActivity(new Intent(v.getContext(), UserSettings.class)));
 
+    // Gets User Data
     ApiUtilities.getApiInterface()
         .getUserData(getToken(getContext()))
         .enqueue(
@@ -88,7 +76,10 @@ public class Home extends Fragment {
               @Override
               public void onResponse(Call<UserData> call, Response<UserData> response) {
                 if (response.body() != null) {
+                  // Sets Name Text
                   nameLabel.setText(response.body().getName());
+
+                  // Hide Spinner & Show Home Screen
                   spinner.setVisibility(View.INVISIBLE);
                   homeUI.setVisibility(View.VISIBLE);
                 }

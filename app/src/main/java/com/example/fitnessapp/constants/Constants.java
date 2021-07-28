@@ -17,4 +17,7 @@ public class Constants {
   public static final String FRIDAY = "Friday";
   public static final String SATURDAY = "Saturday";
   public static final String SUNDAY = "Sunday";
+  // Nutrition
+  public static final Integer CALORIE_LIMIT = 50000;
+  public static final Integer CALORIE_INPUT_MAX = 5;
 }

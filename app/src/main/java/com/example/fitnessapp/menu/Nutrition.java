@@ -1,5 +1,8 @@
 package com.example.fitnessapp.menu;
 
+import static com.example.fitnessapp.constants.Constants.CALORIE_INPUT_MAX;
+import static com.example.fitnessapp.constants.Constants.CALORIE_LIMIT;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,51 +20,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass. Use the {@link Nutrition#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Nutrition extends Fragment {
 
-  // TODO: Rename parameter arguments, choose names that match
-  // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-  private static final String ARG_PARAM1 = "param1";
-  private static final String ARG_PARAM2 = "param2";
   private int calorieCount = 0;
 
-  // TODO: Rename and change types of parameters
-  private String mParam1;
-  private String mParam2;
-
-  public Nutrition() {
-    // Required empty public constructor
-  }
-
-  /**
-   * Use this factory method to create a new instance of this fragment using the provided
-   * parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment Nutrition.
-   */
-  // TODO: Rename and change types and number of parameters
-  public static Nutrition newInstance(String param1, String param2) {
-    Nutrition fragment = new Nutrition();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
-  }
+  public Nutrition() {}
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (getArguments() != null) {
-      mParam1 = getArguments().getString(ARG_PARAM1);
-      mParam2 = getArguments().getString(ARG_PARAM2);
-    }
   }
 
   public static String getDate(Context context) {
@@ -88,58 +55,69 @@ public class Nutrition extends Fragment {
     editor.apply();
   }
 
-  @Override
-  public View onCreateView(
-      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    View view = inflater.inflate(R.layout.fragment_nutrition, container, false);
-    Context context = getContext();
-    TextView currentDate = view.findViewById(R.id.current_date);
-    Button addCaloriesBtn = view.findViewById(R.id.add_calories);
-    TextView calorieCounter = view.findViewById(R.id.calorie_count);
-    EditText caloriesInput = view.findViewById(R.id.calorie_input);
-    String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
-
-    if (getDate(context).equals("")) {
-      setDate(date, context);
-    }
-
-    if (!date.equals(getDate(context))) {
-      setDate(date, context);
-      setDailyCount(0, context);
-    }
-
-    setCalorieCount(getDailyCount(context));
-    calorieCounter.setText(String.valueOf(getCalorieCount()));
-    currentDate.setText(date);
-
-    addCaloriesBtn.setOnClickListener(
-        v -> {
-          if (getCalorieCount() > 50000) {
-            return;
-          }
-
-          String input = caloriesInput.getText().toString();
-
-          if (!input.equals("") && input.length() < 5) {
-            int amount = Integer.parseInt(input);
-            setCalorieCount(calorieCount + amount);
-            calorieCounter.setText(String.valueOf(getCalorieCount()));
-            setDailyCount(getCalorieCount(), context);
-          } else {
-            Toast.makeText(context, "Invalid Input", Toast.LENGTH_SHORT).show();
-          }
-          caloriesInput.setText("");
-        });
-
-    return view;
-  }
-
   public int getCalorieCount() {
     return calorieCount;
   }
 
   public void setCalorieCount(int calorieCount) {
     this.calorieCount = calorieCount;
+  }
+
+  @Override
+  public View onCreateView(
+      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    // Create View
+    View view = inflater.inflate(R.layout.fragment_nutrition, container, false);
+    Context context = getContext();
+
+    // Gets Elements
+    TextView currentDate = view.findViewById(R.id.current_date);
+    Button addCaloriesBtn = view.findViewById(R.id.add_calories);
+    TextView calorieCounter = view.findViewById(R.id.calorie_count);
+    EditText caloriesInput = view.findViewById(R.id.calorie_input);
+
+    // Gets Date
+    String date = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new Date());
+    if (getDate(context).equals("")) {
+      setDate(date, context);
+    }
+    if (!date.equals(getDate(context))) {
+      setDate(date, context);
+      setDailyCount(0, context);
+    }
+
+    // Sets Calorie Counter
+    setCalorieCount(getDailyCount(context));
+    calorieCounter.setText(String.valueOf(getCalorieCount()));
+    currentDate.setText(date);
+
+    // Add Calories
+    addCaloriesBtn.setOnClickListener(
+        v -> {
+          // Limits Calorie Count
+          if (getCalorieCount() > CALORIE_LIMIT) {
+            return;
+          }
+
+          // Retrieves Input
+          String input = caloriesInput.getText().toString();
+
+          // Parse Input
+          if (!input.equals("") && input.length() < CALORIE_INPUT_MAX) {
+            // Calculate New Calorie Amount
+            int amount = Integer.parseInt(input);
+            int total = calorieCount + amount;
+            setCalorieCount(total);
+            calorieCounter.setText(String.valueOf(total));
+            setDailyCount(total, context);
+          } else {
+            Toast.makeText(context, "Invalid Input", Toast.LENGTH_SHORT).show();
+          }
+
+          // Clear Text Input
+          caloriesInput.setText("");
+        });
+
+    return view;
   }
 }
