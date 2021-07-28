@@ -26,10 +26,14 @@ public class ExerciseList extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_exercise_list);
-    exerciseList = findViewById(R.id.exercises_list);
-    exerciseType = getIntent().getStringExtra("exerciseType");
     TextView exerciseListTitle = findViewById(R.id.exercise_list_title);
+    exerciseList = findViewById(R.id.exercises_list);
+
+    // Gets Exercise Type
+    exerciseType = getIntent().getStringExtra("exerciseType");
     exerciseListTitle.setText(exerciseType);
+
+    // Gets Exercise List
     getExercises();
   }
 
@@ -42,6 +46,7 @@ public class ExerciseList extends AppCompatActivity {
         if (response.body() != null) {
           List<ExerciseData> exercises = response.body();
           for (ExerciseData exercise : exercises) {
+            // Displays Each Exercise
             exerciseList.addView(createRow(exercise));
           }
         }
@@ -55,10 +60,13 @@ public class ExerciseList extends AppCompatActivity {
   }
 
   private TableRow createRow(ExerciseData routine) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     params.setMargins(0, 0, 0, 100);
     row.setLayoutParams(params);
+
+    // Generates Text Label
     TextView exerciseName = new TextView(getApplicationContext());
     exerciseName.setText(routine.getName());
     exerciseName.setTextSize(25);

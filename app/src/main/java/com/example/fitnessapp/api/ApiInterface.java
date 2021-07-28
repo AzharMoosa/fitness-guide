@@ -1,5 +1,7 @@
 package com.example.fitnessapp.api;
 
+import static com.example.fitnessapp.constants.Constants.API_URL;
+
 import com.example.fitnessapp.api.auth_data.LoginData;
 import com.example.fitnessapp.api.auth_data.RegisterData;
 import com.example.fitnessapp.api.auth_data.UpdateUserData;
@@ -22,7 +24,7 @@ import retrofit2.http.Path;
 
 public interface ApiInterface {
   // API URL
-  String BASE_URL = "https://fitness-application-api.herokuapp.com/api/";
+  String BASE_URL = API_URL;
 
   // Gets User Data
   @GET("auth")

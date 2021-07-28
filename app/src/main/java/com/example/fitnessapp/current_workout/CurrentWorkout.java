@@ -36,6 +36,7 @@ public class CurrentWorkout extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_current_workout);
+    // Gets Current Workout
     getCurrentWorkout();
   }
 
@@ -48,6 +49,7 @@ public class CurrentWorkout extends AppCompatActivity {
               @Override
               public void onResponse(Call<RoutinesData> call, Response<RoutinesData> response) {
                 if (response.body() != null) {
+                  // Gets Active Routine
                   routine = response.body();
                   displayActiveRoutine();
                 }
@@ -62,14 +64,19 @@ public class CurrentWorkout extends AppCompatActivity {
 
   @RequiresApi(api = VERSION_CODES.N)
   private void displayActiveRoutine() {
+    // Sets Text To Current Day
     String currentDay = getDay();
     TextView dayLabel = findViewById(R.id.current_day);
     dayLabel.setText(currentDay);
+
+    // Displays Exercises From Active Routine
     LinearLayout currentWorkoutList = findViewById(R.id.current_workout_list);
     List<Exercise> exercises = new ArrayList<>();
     for (Session session : routine.getRoutines()) {
       exercises.addAll(session.getExercises());
     }
+
+    // Filter Exercise List
     List<Exercise> dayExercises =
         exercises.stream()
             .filter(exercise -> exercise.getDay() != null)
@@ -83,22 +90,24 @@ public class CurrentWorkout extends AppCompatActivity {
   }
 
   private TableRow createExerciseRow(String text) {
+    // Creates Row
     TableRow row = new TableRow(getApplicationContext());
     LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
     params.setMargins(0, 60, 0, 0);
     row.setLayoutParams(params);
+
+    // Generates Text Label
     TextView textView = new TextView(getApplicationContext());
     textView.setText(text);
     textView.setTextSize(20);
     textView.setTextColor(ContextCompat.getColor(this, R.color.primary_text));
     textView.setPadding(0, 10, 0, 10);
-
     row.addView(textView);
-
     return row;
   }
 
   private String getDay() {
+    // Gets Current Day
     Calendar calendar = Calendar.getInstance();
     int day = calendar.get(Calendar.DAY_OF_WEEK);
     switch (day) {
