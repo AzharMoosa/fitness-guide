@@ -8,11 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
 import com.example.fitnessapp.R;
-import com.example.fitnessapp.exercise_lists.ArmExerciseList;
-import com.example.fitnessapp.exercise_lists.ChestExerciseList;
-import com.example.fitnessapp.exercise_lists.CoreExerciseList;
-import com.example.fitnessapp.exercise_lists.LegExerciseList;
-import com.example.fitnessapp.exercise_lists.ShoulderExerciseList;
+import com.example.fitnessapp.exercise_lists.ExerciseList;
 
 /**
  * A simple {@link Fragment} subclass. Use the {@link Body#newInstance} factory method to create an
@@ -61,22 +57,50 @@ public class Body extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+  public View onCreateView(
+      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View view  = inflater.inflate(R.layout.fragment_body, container, false);
+    View view = inflater.inflate(R.layout.fragment_body, container, false);
     ImageButton armLeft = view.findViewById(R.id.list_arms_btn_left);
     ImageButton armRight = view.findViewById(R.id.list_arms_btn_right);
     ImageButton shoulders = view.findViewById(R.id.list_shoulders_btn);
     ImageButton chest = view.findViewById(R.id.list_chest_btn);
     ImageButton core = view.findViewById(R.id.list_core_btn);
     ImageButton legs = view.findViewById(R.id.list_leg_btn);
-    armLeft.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ArmExerciseList.class)));
-    armRight.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ArmExerciseList.class)));
-    shoulders.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ShoulderExerciseList.class)));
-    chest.setOnClickListener(v -> startActivity(new Intent(v.getContext(), ChestExerciseList.class)));
-    core.setOnClickListener(v -> startActivity(new Intent(v.getContext(), CoreExerciseList.class)));
-    legs.setOnClickListener(v -> startActivity(new Intent(v.getContext(), LegExerciseList.class)));
+    armLeft.setOnClickListener(
+        v -> {
+          Intent intent = new Intent(v.getContext(), ExerciseList.class);
+          intent.putExtra("exerciseType", "Arm Exercises");
+          startActivity(intent);
+        });
+    armRight.setOnClickListener(
+        v -> {
+          Intent intent = new Intent(v.getContext(), ExerciseList.class);
+          intent.putExtra("exerciseType", "Arm Exercises");
+          startActivity(intent);
+        });
+    shoulders.setOnClickListener(
+        v -> {
+          Intent intent = new Intent(v.getContext(), ExerciseList.class);
+          intent.putExtra("exerciseType", "Shoulder Exercises");
+          startActivity(intent);
+        });
+    chest.setOnClickListener(
+        v -> {
+          Intent intent = new Intent(v.getContext(), ExerciseList.class);
+          intent.putExtra("exerciseType", "Chest Exercises");
+          startActivity(intent);
+        });
+    core.setOnClickListener(v -> {
+      Intent intent = new Intent(v.getContext(), ExerciseList.class);
+      intent.putExtra("exerciseType", "Core Exercises");
+      startActivity(intent);
+    });
+    legs.setOnClickListener(v -> {
+      Intent intent = new Intent(v.getContext(), ExerciseList.class);
+      intent.putExtra("exerciseType", "Leg Exercises");
+      startActivity(intent);
+    });
 
     return view;
   }

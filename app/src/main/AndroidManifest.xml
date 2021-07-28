@@ -10,13 +10,9 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.FitnessApp"
     android:usesCleartextTraffic="true">
-    <activity android:name=".current_workout.CurrentWorkout"></activity>
+    <activity android:name=".exercise_lists.ExerciseList"></activity>
+    <activity android:name=".current_workout.CurrentWorkout" />
     <activity android:name=".schedule.WorkoutSchedule" />
-    <activity android:name=".exercise_lists.LegExerciseList" />
-    <activity android:name=".exercise_lists.CoreExerciseList" />
-    <activity android:name=".exercise_lists.ChestExerciseList" />
-    <activity android:name=".exercise_lists.ShoulderExerciseList" />
-    <activity android:name=".exercise_lists.ArmExerciseList" />
     <activity
       android:name=".chat.ChatRoom"
       android:windowSoftInputMode="adjustResize" />
@@ -43,8 +39,8 @@
       android:name="preloaded_fonts"
       android:resource="@array/preloaded_fonts" />
   </application>
-  <uses-permission android:name="android.permission.INTERNET" />
-
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

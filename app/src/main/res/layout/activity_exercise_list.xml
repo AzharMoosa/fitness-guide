@@ -5,39 +5,10 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/primary_bg"
-  tools:context=".exercise_lists.ChestExerciseList">
+  tools:context=".exercise_lists.ExerciseList">
 
-  <ScrollView
-    android:layout_width="348dp"
-    android:layout_height="605dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.491"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0">
-    <LinearLayout
-      android:id="@+id/chest_exercises_list"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical" />
-  </ScrollView>
-  <TextView
-    android:id="@+id/textView23"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="@font/montserrat_bold"
-    android:text="Chest Exercises"
-    android:textColor="@color/red"
-    android:textSize="32sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.159"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.023" />
   <ImageButton
-    android:id="@+id/imageButton7"
+    android:id="@+id/back_btn8"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="8sp"
@@ -45,9 +16,38 @@
     android:onClick="backBtn"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.93"
+    app:layout_constraintHorizontal_bias="0.919"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.023"
     app:srcCompat="@drawable/back_btn" />
+  <ScrollView
+    android:layout_width="352dp"
+    android:layout_height="588dp"
+    android:layout_marginTop="20sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.438"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.979">
+    <LinearLayout
+      android:id="@+id/exercises_list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical" />
+  </ScrollView>
+  <TextView
+    android:id="@+id/exercise_list_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/montserrat_bold"
+    android:textColor="@color/red"
+    android:textSize="32sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.139"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.023" />
 </androidx.constraintlayout.widget.ConstraintLayout>

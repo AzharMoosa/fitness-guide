@@ -17,35 +17,39 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LegExerciseList extends AppCompatActivity {
+public class ExerciseList extends AppCompatActivity {
 
-  private LinearLayout legExerciseList;
+  private LinearLayout exerciseList;
+  private String exerciseType;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_leg_exercise_list);
-    legExerciseList = findViewById(R.id.leg_exercises_list);
-    getLegExercises();
+    setContentView(R.layout.activity_exercise_list);
+    exerciseList = findViewById(R.id.exercises_list);
+    exerciseType = getIntent().getStringExtra("exerciseType");
+    TextView exerciseListTitle = findViewById(R.id.exercise_list_title);
+    exerciseListTitle.setText(exerciseType);
+    getExercises();
   }
 
-  private void getLegExercises() {
+  private void getExercises() {
     ApiUtilities.getApiInterface()
-        .getExercisesByType("Leg Exercises").enqueue(new Callback<List<ExerciseData>>() {
+        .getExercisesByType(exerciseType).enqueue(new Callback<List<ExerciseData>>() {
       @Override
       public void onResponse(Call<List<ExerciseData>> call,
           Response<List<ExerciseData>> response) {
         if (response.body() != null) {
           List<ExerciseData> exercises = response.body();
           for (ExerciseData exercise : exercises) {
-            legExerciseList.addView(createRow(exercise));
+            exerciseList.addView(createRow(exercise));
           }
         }
       }
 
       @Override
       public void onFailure(Call<List<ExerciseData>> call, Throwable t) {
-        Toast.makeText(getApplicationContext(), "Cannot Get Leg Exercises", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Cannot Get Exercises", Toast.LENGTH_SHORT).show();
       }
     });
   }
