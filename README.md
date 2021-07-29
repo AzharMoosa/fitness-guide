@@ -4,29 +4,33 @@ The ultimate all in one fitness application to track your physical health, worko
 
 ## Description
 
-TODO
+Welcome to Fitness Guide, an Android app to create workout routines, track nutritional information, discover new exercises for various muscle groups and socalise with other users regarding fitness, health and nutrition. Having a consistent and clear routine is essential when working out. As a result, Fitness Guide makes it easy to create routines, set an active routine and view exercises to be performed on each day. With the calorie tracker, you can ensure that your daily calorie intake is sufficient and your TDEE is reached. Knowing which exercises to put into your routine can be difficult. Fitness Guide allows you to find useful information about different exercises and gain an insight on how to perform these exercises. Finally, with the chat functionality, users are able to meet other users and discuss any fitness related questions they may have.
+
+## Screenshots
 
 ## Getting Started
 
 ### Dependencies
 
-* Android Studio
-* Java
+* Android
 
 ### Installing App
 
 * Install App From Google Playstore (TODO)
 
-## Features
+## Key Features
 
-TODO
-
-## Making Changes
-
-1. Clone Repo
-```
-git clone https://github.com/AzharMoosa/fitness-guide.git
-```
+* Create Workout Routines
+   * Add Exercise For Each Day
+   * Add Number of Sets And Repetitions For Each Exercise
+* Track Your Daily Calorie Count
+   * Ensure Daily Calorie Counts Are Met
+* Find Useful Exercises For Various Muscle Groups
+   * Use The Body Image To Find Exercises
+   * Find Descriptions For Performing Each Exercise
+* Chat With Other Users About Various Topics Including Fitness, Health & Nutrition
+   * Designated Channels To Chat With Other Users
+   * Ability To Send Messages Anonymously
 
 ## Help
 
