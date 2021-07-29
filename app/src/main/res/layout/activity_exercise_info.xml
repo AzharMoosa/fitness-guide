@@ -40,7 +40,8 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/montserrat"
         android:textColor="@color/primary_text"
-        android:textSize="22sp" />
+        android:textSize="20sp"
+        app:lineHeight="40sp" />
     </LinearLayout>
   </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

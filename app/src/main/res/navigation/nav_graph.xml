@@ -7,27 +7,27 @@
 
   <fragment
     android:id="@+id/navigation_home"
-    android:name="com.example.fitnessapp.menu.Home"
+    android:name="com.example.fitnessguide.menu.Home"
     android:label="fragment_home"
     tools:layout="@layout/fragment_home" />
   <fragment
     android:id="@+id/navigation_nutrition"
-    android:name="com.example.fitnessapp.menu.Nutrition"
+    android:name="com.example.fitnessguide.menu.Nutrition"
     android:label="fragment_nutrition"
     tools:layout="@layout/fragment_nutrition" />
   <fragment
     android:id="@+id/navigation_body"
-    android:name="com.example.fitnessapp.menu.Body"
+    android:name="com.example.fitnessguide.menu.Body"
     android:label="fragment_body"
     tools:layout="@layout/fragment_body" />
   <fragment
     android:id="@+id/navigation_chat"
-    android:name="com.example.fitnessapp.menu.Chat"
+    android:name="com.example.fitnessguide.menu.Chat"
     android:label="fragment_chat"
     tools:layout="@layout/fragment_chat" />
   <fragment
     android:id="@+id/navigation_settings"
-    android:name="com.example.fitnessapp.menu.Settings"
+    android:name="com.example.fitnessguide.menu.Settings"
     android:label="fragment_settings"
     tools:layout="@layout/fragment_settings" />
 </navigation>

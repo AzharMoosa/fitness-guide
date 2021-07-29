@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.fitnessapp">
+  package="com.example.fitnessguide">
 
   <application
     android:allowBackup="true"
@@ -8,27 +8,27 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/Theme.FitnessApp"
+    android:theme="@style/Theme.FitnessGuide"
     android:usesCleartextTraffic="true">
-    <activity android:name=".exercise_lists.ExerciseInfo"></activity>
-    <activity android:name=".exercise_lists.ExerciseList" />
-    <activity android:name=".current_workout.CurrentWorkout" />
-    <activity android:name=".schedule.WorkoutSchedule" />
+    <activity android:name="com.example.fitnessguide.exercise_lists.ExerciseInfo"></activity>
+    <activity android:name="com.example.fitnessguide.exercise_lists.ExerciseList" />
+    <activity android:name="com.example.fitnessguide.current_workout.CurrentWorkout" />
+    <activity android:name="com.example.fitnessguide.schedule.WorkoutSchedule" />
     <activity
-      android:name=".chat.ChatRoom"
+      android:name="com.example.fitnessguide.chat.ChatRoom"
       android:windowSoftInputMode="adjustResize" />
-    <activity android:name=".settings.About" />
-    <activity android:name=".settings.HealthInformation" />
-    <activity android:name=".settings.ChatSettings" />
-    <activity android:name=".settings.UserSettings" />
-    <activity android:name=".routines.EditRoutine" />
-    <activity android:name=".routines.CreateRoutine" />
-    <activity android:name=".routines.ViewRoutine" />
-    <activity android:name=".routines.Routines" />
-    <activity android:name=".Dashboard" />
-    <activity android:name=".auth.SignUp" />
-    <activity android:name=".auth.Login" />
-    <activity android:name=".MainActivity">
+    <activity android:name="com.example.fitnessguide.settings.About" />
+    <activity android:name="com.example.fitnessguide.settings.HealthInformation" />
+    <activity android:name="com.example.fitnessguide.settings.ChatSettings" />
+    <activity android:name="com.example.fitnessguide.settings.UserSettings" />
+    <activity android:name="com.example.fitnessguide.routines.EditRoutine" />
+    <activity android:name="com.example.fitnessguide.routines.CreateRoutine" />
+    <activity android:name="com.example.fitnessguide.routines.ViewRoutine" />
+    <activity android:name="com.example.fitnessguide.routines.Routines" />
+    <activity android:name="com.example.fitnessguide.Dashboard" />
+    <activity android:name="com.example.fitnessguide.auth.SignUp" />
+    <activity android:name="com.example.fitnessguide.auth.Login" />
+    <activity android:name="com.example.fitnessguide.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

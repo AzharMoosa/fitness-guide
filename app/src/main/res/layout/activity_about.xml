@@ -40,7 +40,7 @@
     android:layout_width="350dp"
     android:layout_height="539dp"
     android:fontFamily="@font/montserrat"
-    android:text="Welcome to {{NAME}}!\n&#8226; Create workout routines and track your workouts.\n&#8226; Struggling to find exercises? Use the body tab to find exercises for various muscle groups.\n&#8226; Track your daily calorie count in the nutrition tab.\n&#8226; Chat to other users in the designated channels.\n&#8226; All in one place to track your physical health"
+    android:text="Welcome to Fitness Guide!\n&#8226; Create workout routines and track your workouts.\n&#8226; Struggling to find exercises? Use the body tab to find exercises for various muscle groups.\n&#8226; Track your daily calorie count in the nutrition tab.\n&#8226; Chat to other users in the designated channels.\n&#8226; All in one place to track your physical health"
     android:textColor="@color/primary_text"
     android:textSize="25sp"
     app:layout_constraintBottom_toBottomOf="parent"
