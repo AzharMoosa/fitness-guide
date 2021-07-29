@@ -9,9 +9,9 @@ Welcome to Fitness Guide, an Android app to create workout routines, track nutri
 ## Screenshots
 
 <p align="middle">
-  <img src="/screenshots/Home.png" width="300" />
-  <img src="/screenshots/Body.png" width="300" /> 
-  <img src="/screenshots/Chat.png" width="300" />
+  <img src="/screenshots/Home.png" width="32%" />
+  <img src="/screenshots/Body.png" width="32%" /> 
+  <img src="/screenshots/Chat.png" width="32%" />
 </p>
 
 ## Getting Started
