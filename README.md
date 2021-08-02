@@ -22,7 +22,7 @@ Welcome to Fitness Guide, an Android app to create workout routines, track nutri
 
 ### Installing App
 
-* Install App From Google Playstore (TODO)
+* [Install App From Google Playstore](https://play.google.com/store/apps/details?id=com.fitnessguide.fitnessguide)
 
 ## Key Features
 
